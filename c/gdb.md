@@ -21,6 +21,7 @@ ex) (gdb) delete all  #모든 브레이크 포인트 제거
 
 ###대략적인 사용법
 ```shell
+(gdb) continue  #프로그램 계속실행
 (gdb) return # 함수리턴하고 빠져나오기
 (gdb) return <value> #임의값으로 리턴하고 함수빠져나오기
 (gdb) finish #함수 마지막 지점으로 이동
@@ -33,4 +34,10 @@ ex) (gdb) delete all  #모든 브레이크 포인트 제거
 (gdb)info macro <MACRO NAME> 
 또는
 (gdb)macro expend <MACRO NAME> # DEFINE MACRO print
+```
+
+###Core 파일 분석 
+```shell
+    gdb  program_filename core_filename 
+    ex) gdb a.out ./core  
 ```
