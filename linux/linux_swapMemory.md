@@ -32,3 +32,10 @@ swapon /home/swapfile
 echo "swapon /home/swapfile" >> /etc/rc.d/rc.local #  "swapon /home/swapfile" 를 etc/rc.d/rc.local내용 추가
 # 위의 내용을 추가하면 리부팅시에도 스왑파일이 추가된다.
 ```
+
+#리눅스 스왑(swap) 메모리 해제
+
+```shell
+swapoff <fileName> 
+ex) swapoff /home/swapfile
+```
