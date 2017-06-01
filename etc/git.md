@@ -52,6 +52,7 @@ ex) remote add origin https://github.com/dlfrb2000/Note.git
 git push -u origin master # -u옵션이 정확이 무엇인지 모르겠음 
 ```
 
-###.gitignore 파일설정
+### 로그 확인
 ```shell
+git log
 ```
