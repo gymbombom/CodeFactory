@@ -56,7 +56,14 @@ ex) remote add origin https://github.com/dlfrb2000/Note.git
 ### 원격 저장소에 push하기
 ```shell
 git push -u origin master # -u옵션이 정확이 무엇인지 모르겠음 
-```ㅍㅍ
+```
+
+### 간단한 사용법
+```shell
+git remote -v # 원격저장소 보기
+git remote set-url <remote repository name> <remote repository url>
+ex) git remote set-url origin https://github.com/user/repo.git
+```
 
 ### 로그 확인
 ```shell
