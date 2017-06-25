@@ -43,3 +43,17 @@ set laststatus=2
 
 "검색결과 하일라이팅
 set hlsearch
+
+" a => 'a', 로 변경
+map <F2> :%s/^/'/g <CR> :%s/$/',/g <CR>
+
+" a, => a||'|'|| 로 변경
+map <F3> :%s/,/\|\|'\|'\|\|/g <CR>
+
+" a||'|'|| => a, 로 변경
+map <F4> :%s/\|\|'\|'\|\|/,/g <CR>
+
+" 문장 끝에서 개행
+map <F5> :%s/$/\r/g <CR>
+
+map <F6> :%s/^/query.append("/g <CR> :%s/$/ \\n");/g <CR>
