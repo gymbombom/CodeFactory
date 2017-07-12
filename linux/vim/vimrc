@@ -1,60 +1,60 @@
-" Vimdc 설정 옵션 
+"Vimdc 설정 옵션 
 
-" 계정별 설정은  ~/.vimrc 파일에 설정
-" 전체계정 설정은 /etc/vim/vimrc 파일 또는 /etc/vimrc 파일에 작성
+"계정별 설정은  ~/.vimrc 파일에 설정
+"전체계정 설정은 /etc/vim/vimrc 파일 또는 /etc/vimrc 파일에 작성
 
-" Jellybean 테마 다운로드 http://www.vim.org/scripts/script.php?script_id=2555
-" 테마 설정법 
-" /etc/vim/colors 에 테마파일 위치
+"Jellybean 테마 다운로드 http://www.vim.org/scripts/script.php?script_id=2555
+"테마 설정법 
+"/etc/vim/colors 에 테마파일 위치
 colorscheme jellybeans
 
-" 라인넘버표시 
+"라인넘버표시 
 set nu
 
-" 대소문자 구분없이 검색
+"대소문자 구분없이 검색
 set ignorecase
 
-" 붙여넣기 계단현상 없애기
+"붙여넣기 계단현상 없애기
 set paste
 
-" 코딩문법 보이기
+"코딩문법 보이기
 syntax on
 
-" 자동인덴트
+"자동인덴트
 set autoindent
 
-" C언어 인덴트
+"C언어 인덴트
 set cindent
 
-" tab 너비
+"tab 너비
 set ts=4
 
-" autoindent너비
+"autoindent너비
 set shiftwidth=4
 
-" 매치되는 괄호 보여줌
+"매치되는 괄호 보여줌
 set showmatch
 
-" 똑똑한 인덴트?
+"똑똑한 인덴트?
 set smartindent
 
-" 상태바 항상표시
+"상태바 항상표시
 set laststatus=2
 
-" 검색결과 하일라이팅
+"검색결과 하일라이팅
 set hlsearch
 
-" a => 'a', 로 변경
+"a => 'a', 로 변경
 map <F2> :%s/^/'/g <CR> :%s/$/',/g <CR>
 
-" a, => a||'|'|| 로 변경
+"a, => a||'|'|| 로 변경
 map <F3> :%s/,/\|\|'\|'\|\|/g <CR>
 
-" a||'|'|| => a, 로 변경
+"a||'|'|| => a, 로 변경
 map <F4> :%s/\|\|'\|'\|\|/,/g <CR>
 
-" 문장 끝에서 개행
+"문장 끝에서 개행
 map <F5> :%s/$/\r/g <CR>
 
-" query.append
+"query.append
 map <F6> :%s/^/query.append("/g <CR> :%s/$/ \\n");/g <CR>
