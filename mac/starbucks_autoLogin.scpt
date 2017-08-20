@@ -1,3 +1,5 @@
+(* 스타벅스(starbucks) 와이파이 자동로그인 스크립트 *)
+
 --터미널 열고 커맨드 실행
 tell application "Terminal"
 	do script "networksetup -setairportnetwork en0 KT_starbucks"
