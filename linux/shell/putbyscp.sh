@@ -13,5 +13,5 @@ CLIENT_FILENAME=$1;
 #run script
 for i in ${SERVER_IP[@]}
 do
-    scp -r $CLIENT_FILENAME $SERVER_USER@$i:$CLIENT_PWD
+	scp -r $CLIENT_FILENAME $SERVER_USER@$i:$CLIENT_PWD
 done
