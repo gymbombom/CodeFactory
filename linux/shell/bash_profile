@@ -1,4 +1,0 @@
-alias ll='ls -alh';
-alias c='clear';
-alias h='history';
-alias vi='vim';
