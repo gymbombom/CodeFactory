@@ -1,10 +1,17 @@
 #/bin/bash
 
-IP=("10.0.0.5" "10.0.0.6" "10.0.0.7")
-PWD=`pwd | xargs`;
-FILENAME=$1;
+#client(pwd)---scp---->server[@](client_pwd)
 
-for i in ${IP[@]}
+#server variables
+SERVER_IP=("10.0.0.5" "10.0.0.6" "10.0.0.7")
+SERVER_USER="user"
+
+#client variables
+CLIENT_PWD=`pwd | xargs`;
+CLIENT_FILENAME=$1;
+
+#run script
+for i in ${SERVER_IP[@]}
 do
-    scp -r $FILENAME hes@$i:$PWD
+    scp -r $CLIENT_FILENAME $SERVER_USER@$i:$CLIENT_PWD
 done
