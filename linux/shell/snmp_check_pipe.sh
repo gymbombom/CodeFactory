@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #input file example
-#       ip          version     community       oid
+#ip|version|community|oid
 ####################################################
-# 111.222.333.444       2       public  sysuptime
+# 111.222.333.444|2|public|sysuptime
 
 return_val=1
 
@@ -58,8 +58,13 @@ args_check $1
 
 if [ $return_val -eq 0 ]; then
 	cat $1 | \
-	while read ip version community oid
+	while read line
 	do
+		ip=`echo "$line" | awk -F "|" '{print $1}'`
+		version=`echo "$line" | awk -F "|" '{print $2}'`
+		community=`echo "$line" | awk -F "|" '{print $3}'`
+		oid=`echo "$line" | awk -F "|" '{print $4}'`
+
 		return_version=$(snmp_version_check $version)
 		echo "$ip $version $community $oid" >> snmp_result.log
 		return_oid=$(oid_check $oid)
