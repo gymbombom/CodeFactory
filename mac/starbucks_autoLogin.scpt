@@ -8,10 +8,10 @@ end tell
 delay 15  --15초 딜레이
 
 tell application "System Events"
-	key code 53.  --ESC 키 입력
+	key code 53.	--ESC 키 입력
 end tell
 
-tell application "Google Chrome". --구글 크롬 활성화
+tell application "Google Chrome"	--구글 크롬 활성화
 	activate
 	
 	tell window 1
