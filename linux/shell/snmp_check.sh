@@ -43,10 +43,14 @@ function snmp_version_check()
 
 function oid_check()
 {
-	if [ $1 = "ifname" ]; then
+	if [ $1 = "ifname" ]; then    #ifName
 		return_oid=".1.3.6.1.2.1.31.1.1.1.1"
 	elif [ $1 = "sysuptime" ]; then
 		return_oid=".1.3.6.1.2.1.1.3"
+    elif [ $1 = "bridge" ]; then    #dot1dtpfdbport
+		return_oid=".1.3.6.1.2.1.17.4.3.1.2"
+    elif [ $1 = "arp" ]; then    #ipNetToMediaPhysAddress
+		return_oid=".1.3.6.1.2.1.4.22.1.2"
 	else
 		echo "invalid oid" >> snmp_result.log
 	fi

@@ -19,11 +19,11 @@ FTP_LOGFILE_NAME="logfile_name"
 cd $CLIENT_DIR
 
 ftp -n $SERVER_ADDRESS $SERVER_PORT << End-Of-Session > $FTP_LOGFILE_NAME
-user $FTP_USER $FTP_PASSWORD
-bin
-cd $SERVER_DIR
-get $SERVER_TARGET_FILE
-bye
+    user $FTP_USER $FTP_PASSWORD
+    bin
+    cd $SERVER_DIR
+    get $SERVER_TARGET_FILE
+    bye
 End-Of-Session
 
 exit 0
