@@ -1,6 +1,7 @@
 # apt-get 사용법
-###참고
-[https://blog.outsider.ne.kr/346](https://blog.outsider.ne.kr/346)
+### 참고
+[https://blog.outsider.ne.kr/346](https://blog.outsider.ne.kr/346)  
+[https://www.hugeserver.com/kb/install-use-tcpdump-capture-packets](https://www.hugeserver.com/kb/install-use-tcpdump-capture-packets)
 
 ### 사용법
 ```shell
