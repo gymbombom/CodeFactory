@@ -1,4 +1,5 @@
 # cx freeze 설치 및 사용법
+> python 실행파일 만들기 (exe)
 
 ```shell
 	$ pip install cx_Freeze #설치
