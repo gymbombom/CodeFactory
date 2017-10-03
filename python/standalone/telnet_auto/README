@@ -1,0 +1,20 @@
+python version : 3.6.2
+
+
+#vertualenv 로 개발환경 세팅
+ 
+sudo pip3 install virtualenv # vertualenv 설치
+virtualenv --python=python3.6.2 telnet_auto # 가상환경 생성
+. activate # 가상환경 진입
+pip3 install -r package.dat # 똑같은 패키지 설치
+
+
+
+# exe 파일로 Build
+
+pyinstaller run.py  #exe 파일 Build
+
+cp ./ui.ui ./dist/run/ui.ui # ui.ui 파일 복사
+cp -r ./dist/run/PyQt5/Qt/plugins ./dist/run/plugins  # plugins	디렉토리를  exe 파일위치로 복사
+
+
