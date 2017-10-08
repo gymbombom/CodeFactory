@@ -38,3 +38,26 @@
     sudo ln -s /usr/local/bin/python3 /usr/bin/python3 # python3 symbolic link 
     sudo ln -s /usr/local/bin/pip3 /usr/bin/pip3 # pip3 symbolic link 생성
 ```
+
+### python 경로 변경하여 설치
+```shell
+    curl -O https://www.python.org/ftp/python/3.4.4/Python-3.4.4.tgz #source 파일 다운로드
+    tar -xvzf Python-3.4.4.tgz #source 파일 압축해제
+    cd Python-3.4.4 # 압축해제한 디렉토리로 이동
+    ./configure --prefix=/home/lik/python --enable-shared  # python binary 설치 위치를 /home/lik/python 로 설정
+    make  # make
+    make install # make install
+
+    echo "/home/lik/python/bin" >> /etc/ld.so.conf.d/python.conf/python.conf #kernel 2.6 부터 사용가능.... 해당 파일에 shared library 위치 설정(시스템 전반에 영향을 미침)
+    #또는
+    echo "/home/lik/python/bin" >> /etc/ld.so.conf #shared Library 위치 설정 (시스템 전체에 영향을 미침)
+    #또는
+    echo "export LD_LIBRARY_PATH=/home/lik/python/lib" >> /home/lik/.bashrc # LD_LIBRARY_PATH export
+
+    (옵션)
+    echo "export PYTHON_HOME='/home/lik/python'" >> /home/lik/.bashrc # PYTHON_HOME export
+    echo "export PATH=$PYTHON_HOME/bin:$PATH" >> /home/lik/.bashrc # PATH 에 추가
+    source .//home/lik/.bashrc
+
+
+```
