@@ -16,9 +16,10 @@
     
     (gdb) b <function>
     ex) b GetNum 혹은 b Equip::GetNum #해당 function에 브레이크 포인트 설정
-    ex) (gdb) break iter.c:6  -if i == 5 #특정조건일 경우 브레이크포인트 걸기 
+    ex) (gdb) break iter.c:6  if i == 5 #특정조건일 경우 브레이크포인트 걸기 
     (GDB) break 10 if var == 0  #var 변수의 값이 0일때 10번 행에 설
     (gdb) delete all  #모든 브레이크 포인트 제거
+    (gdb) delete 1  #1번 브레이크 프린트 삭제
     (GDB) info break #Break Point 출력
 ```
 
