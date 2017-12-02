@@ -11,6 +11,6 @@
     sudo apt-get dist-upgrade  #의존성 검사하며 업그레이드
     sudo apt-get --reinstall install <package Name> # 재설치
     sudo apt-get --purge autoremove <pakage Name>  #의존성 검사하며 설정파일까지 삭제
-    sudo sudo apt-cache  search <pakage Name> #패키지 검색
+    sudo apt-cache  search <pakage Name> #패키지 검색
 ```
 

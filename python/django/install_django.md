@@ -18,6 +18,9 @@
 ```shell
      $ virtualenv <env_dir> # 가상환경 생성
      $ virtualenv --python=python3.3 <env_dir> # python 버전을 선택하여 가상환경 생성
+	 or
+	 $ virtualenv --python=/home/django/python/bin/python3.6 <env_dir>
+	 $ source $<env_dir>/bin/activate #가상환경으로 진입
 	 (venv) deactivate # 가상환경 빠져나오기
 ```
 

@@ -34,7 +34,7 @@
 
 ### 5. 기타
 ```shell
-    #sudo 로 pyython 을 사용할 경우 /usr/bin/python3 로 symbolic link 를 걸어줘야 한다.
+    #sudo 로 python 을 사용할 경우 /usr/bin/python3 로 symbolic link 를 걸어줘야 한다.
     sudo ln -s /usr/local/bin/python3 /usr/bin/python3 # python3 symbolic link 
     sudo ln -s /usr/local/bin/pip3 /usr/bin/pip3 # pip3 symbolic link 생성
 ```
