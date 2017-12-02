@@ -217,61 +217,9 @@ int hadoopfileget(hdfsFS* fs, in_t* in, out_t* out, char* buffer)
 
     fprintf(stderr, "Read following %d bytes: \n",num_read_bytes);
 
-
-    //fprintf(stderr, "Read following %d bytes:\n%s\n",
-     //       num_read_bytes, buffer);
-
     /* close File */
     hdfsCloseFile(*fs, readFile);
 
-
-#if 0
-	// data to be written to the file
-    if(buffer == NULL) {
-	return -2;
-    }
-	// read from the file
-    tSize curSize = bufferSize;
-    printf("curSize : %ld \n",curSize);
-    printf("curSize : %ld \n",bufferSize);
-
-     for (; curSize == bufferSize;) {
-        curSize = hdfsRead(*fs, readFile, (void*)buffer, curSize);
-    }
-
-	hdfsCloseFile(*fs, readFile);
-	hdfsDisconnect(*fs);
-#endif
-
-
-#if 0
- 	/*FileInfomation Get */
- 	hdfsFileInfo *fileInfo = NULL;
-
- 	if((fileInfo = hdfsGetPathInfo(*fs, in->filePath)) != NULL)
- 	 {
-            fprintf(stderr, "hdfsGetPathInfo - SUCCESS!\n");
-            fprintf(stderr, "Name: %s \n", fileInfo->mName);
-            fprintf(stderr, "Type: %c \n", (char)(fileInfo->mKind));
-            fprintf(stderr, "Replication: %d \n", fileInfo->mReplication);
-            fprintf(stderr, "BlockSize: %ld \n", fileInfo->mBlockSize);
-            fprintf(stderr, "Size: %ld \n", fileInfo->mSize);
-            fprintf(stderr, "LastMod: %s \n", ctime(&fileInfo->mLastMod));
-            fprintf(stderr, "Owner: %s \n", fileInfo->mOwner);
-            fprintf(stderr, "Group: %s \n", fileInfo->mGroup);
-
-            fprintf(stderr, "long Modify Date : %ld \n", fileInfo->mLastMod);
-            //char permissions[10];
-            //permission_disp(fileInfo->mPermissions, permissions);
-            //fprintf(stderr, "Permissions: %d (%s)\n", fileInfo->mPermissions, permissions);
-
-            out->fileSize = fileInfo->mSize;
-            hdfsFreeFileInfo(fileInfo, 1);
-     }
-
-
-   	tSize bufferSize = out->fileSize;
- #endif
 
 #if 0
    	tSize bufferSize = 15;
@@ -294,47 +242,6 @@ int hadoopfileget(hdfsFS* fs, in_t* in, out_t* out, char* buffer)
 	free(buffer);
 	hdfsCloseFile(*fs, readFile);
 	hdfsDisconnect(*fs);
-#endif
-
-#if 0
-     	/* hdfs File Read */
-     	hdfsFile readFile = hdfsOpenFile(*fs, in->filePath, O_RDONLY, 0, 0, 0);
-     	if (!readFile) {
-           fprintf(stderr, "Failed to open %s for reading!\n", in->filePath);
-           exit(-1);
-        }
-
-
-        fprintf(stderr, "hdfsAvailable: %d\n", hdfsAvailable(*fs, readFile));
-
-        tOffset seekPos = 1;
-        if(hdfsSeek(*fs, readFile, seekPos)) {
-            fprintf(stderr, "Failed to seek %s for reading!\n", in->filePath);
-            exit(-1);
-        }
-
-        tOffset currentPos = -1;
-        if((currentPos = hdfsTell(*fs, readFile)) != seekPos) {
-            fprintf(stderr,
-                    "Failed to get current file position correctly! Got %ld!\n",
-                    currentPos);
-            exit(-1);
-        }
-        fprintf(stderr, "Current position: %ld\n", currentPos);
-
-        static char buffer[32];
-        tSize num_read_bytes = hdfsRead(*fs, readFile, (void*)buffer,
-                sizeof(buffer));
-        fprintf(stderr, "Read following %d bytes:\n%s\n",
-                num_read_bytes, buffer);
-
-        num_read_bytes = hdfsPread(*fs, readFile, 0, (void*)buffer,
-                sizeof(buffer));
-        fprintf(stderr, "Read following %d bytes:\n%s\n",
-                num_read_bytes, buffer);
-
-        /* close File */
-        hdfsCloseFile(*fs, readFile);
 #endif
 
 	return SUCCESS;
