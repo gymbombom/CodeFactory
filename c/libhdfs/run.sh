@@ -36,4 +36,4 @@ done
 
 export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/i386/server
 
-./hdfstest /test.dat 1111 1111
+./hdfstest
