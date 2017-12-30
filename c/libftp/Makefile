@@ -1,5 +1,5 @@
 #CC = cc  -g -I ./include -L ./lib  -m32
-CC = cc  -g -I ./include  -m32
+CC = cc  -g -I ./include -L ./lib
 
 RECO_SRC = $(wildcard *.c)
 DEBUG = -Wall
