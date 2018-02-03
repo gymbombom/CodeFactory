@@ -15,8 +15,8 @@ osascript -e 'set volume without output muted'
 
 ###2.스크립트 파일 이동
 ```shell
-mv ./mute_on /Library
-mv ./mute_off /Library
+mv ./mute_on.sh /Library
+mv ./mute_off.sh /Library
 ```
 
 ###3.console 에서 명령실행
