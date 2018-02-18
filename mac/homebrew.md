@@ -24,3 +24,9 @@
 	$ rm -rf .git
 	$ rm -rf ~/Library/Caches/Homebrew
 ```
+
+### homebrew 패키지 설치위치
+```shell
+	usr/local/Cellar/ # homebrew로 설치한 패키지는 해당경로에 설치
+	/usr/local/bin/ # 심볼릭링크가 걸려있다.
+```
