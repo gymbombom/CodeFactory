@@ -61,3 +61,11 @@
 
 
 ```
+
+### pip 설치
+
+```shell
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py # script 다운로드
+    sudo get-pip.py # scrip 실행
+
+```
