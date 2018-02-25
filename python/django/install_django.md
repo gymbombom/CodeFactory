@@ -5,6 +5,8 @@
 ### 1.Django 설치
 ```shell
     pip3 install django==1.11.4 # django 설치(1.11.4 버젼)
+    # pip3 install --upgrade django==1.11.4 
+    # pip3 install --upgrade django
     python3 -m django --version # django version 확인
 ```
 
