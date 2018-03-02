@@ -1,8 +1,7 @@
-# 라즈베리파이 설정법
+# OSMC 설치
+> Open Source Media Center 로 라즈베리파이 오픈소스 미디어 센터를 구성할수 있는 OS
 
-
-[라즈베리파이 지원SD카드 확인](https://elinux.org/RPi_SD_cards#Working_.2F_Non-working_SD_cards)
-### 라즈비안OS설치법
+### OSMC 설치
 ```shell
 $ df -hl
 Filesystem     Size   Used  Avail Capacity iused               ifree %iused  Mounted on
@@ -21,22 +20,7 @@ $ diskutil unmountDisk /dev/disk2 # 디스크 언마운트
 sudo dd bs=1m if=/path/image.img of=/dev/rdisk2 # disk명 앞에 r을 붙여야함. Ctrl+T 로 진행상황 확인
 sudo diskutil eject /dev/rdisk2 # 작업이 끝나면 디스크 꺼냄
 ```
+> 최초 설정 시 English로 설정해야 함 한글로 설정해도 어차피 한글은 깨져서 사용하지 못한다.
 
-### xrdp
-``` shell
-apt-get install xrdp
-```
-### 라즈베리파이 한글설정
-``` shell
-sudo apt-get -y install ibus-hangul
-sudo apt-get install fonts-unfonts-core
-```
-~~sudo apt-get -y install ttf-unfonts-core~~
-
-### 라즈베리파이 디스크 포멧 추가
-``` shell
-#NTFS
-apt-get install ntfs-3g
-#EXFAT
-apt-get install exfat-fuse
-```
+### 안드로이드 리모컨 설정
+> 안드로이드 마켓에서 yeste 다운로드
