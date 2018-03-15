@@ -1,5 +1,4 @@
 #!/bin/bash
+source ./header.sh
 
-SVNSERVE=`which svnserve | xargs`;
-
-$SVNSERVE -d  -r /home/svn
+$SVNSERVE -d  -r $SVN_REPOS_ROOT

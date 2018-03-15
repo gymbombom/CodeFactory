@@ -1,43 +1,33 @@
 #!/bin/bash
+source ./header.sh
 
-#define variables
-SVN_HOME="/home/svn";
-SVN_REPOS_ROOT="$SVN_HOME";
-SVN_REPOS="$SVN_HOME/$1";
-SVN_DEFAULT_CONF="$SVN_HOME/default";
-SVNADMIN=`which svnadmin |xargs`;
-
-#usage print function
 function usg_print()
 {
 	echo "<args> repository name"
 }
 
-
 if [ $# = 0 ]; then
 	usg_print
-  	exit 1
+	exit 1
 fi
 
 if [ $# = 1 ]; then
-	#1. repository create
-   	#/usr/bin/svnadmin create --fs-type fsfs /home/svn/repos/$1
-  	$SVNADMIN create --fs-type fsfs $SVN_REPOS;
 
-  	#2. backup config
-  	/bin/mkdir $SVN_REPOS/conf/backup
+	# 1. repository create
+	$SVNADMIN create --fs-type fsfs $SVN_REPOS;
 
-  	/bin/cp $SVN_REPOS/conf/authz $SVN_REPOS/conf/backup/authz_backup
-  	/bin/cp $SVN_REPOS/conf/passwd $SVN_REPOS/conf/backup/passwd_backup
-  	/bin/cp $SVN_REPOS/conf/svnserve.conf $SVN_REPOS/conf/backup/svnserve.conf_backup
+	# 2. default conf setting
+	echo "$DEFAULT_SVN_USER = $DEFAULT_SVN_USER" >> $SVN_REPOS/conf/passwd
+	#cat "lik = lik" >> $SVN_REPOS/conf/svnserve.conf
+	sed -i '8a\anon-access = read' $SVN_REPOS/conf/svnserve.conf | cat -n
+	sed -i '9a\auth-access = write' $SVN_REPOS/conf/svnserve.conf |cat -n
+	sed -i '10a\password-db = passwd' $SVN_REPOS/conf/svnserve.conf | cat -n
 
-  	#3. default file setting
-  	/bin/cp $SVN_DEFAULT_CONF/authz $SVN_REPOS/conf/authz
-  	/bin/cp $SVN_DEFAULT_CONF/passwd $SVN_REPOS/conf/passwd
-  	/bin/cp $SVN_DEFAULT_CONF/svnserve.conf $SVN_REPOS/conf/svnserve.conf
-
-   	# 4.config file value change
+	# 3. default Directory create
+	svn mkdir svn://127.0.0.1/$1/trunk -m "trunk Directory Create" --non-interactive --trust-server-cert --username $DEFAULT_SVN_USER --password $DEFAULT_SVN_PASSWORD
+	svn mkdir svn://127.0.0.1/$1/branches -m "branches Directory Create" --non-interactive --trust-server-cert --username $DEFAULT_SVN_USER --password $DEFAULT_SVN_PASSWORD
+	svn mkdir svn://127.0.0.1/$1/tags -m "tags Directory Create" --non-interactive --trust-server-cert --username $DEFAULT_SVN_USER --password $DEFAULT_SVN_PASSWORD
 else
 	usg_print
-  	exit 1
+	exit 1
 fi
