@@ -17,7 +17,7 @@ if [ $# = 1 ]; then
 	$SVNADMIN create --fs-type fsfs $SVN_REPOS;
 
 	# 2. default conf setting
-	echo "$DEFAULT_SVN_USER = $DEFAULT_SVN_USER" >> $SVN_REPOS/conf/passwd
+	echo "$DEFAULT_SVN_USER = $DEFAULT_SVN_PASSWORD" >> $SVN_REPOS/conf/passwd
 	#cat "lik = lik" >> $SVN_REPOS/conf/svnserve.conf
 	sed -i '8a\anon-access = read' $SVN_REPOS/conf/svnserve.conf | cat -n
 	sed -i '9a\auth-access = write' $SVN_REPOS/conf/svnserve.conf |cat -n
