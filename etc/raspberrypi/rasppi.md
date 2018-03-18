@@ -33,7 +33,7 @@ sudo apt-get install fonts-unfonts-core
 ```
 ~~sudo apt-get -y install ttf-unfonts-core~~
 
-### 라즈베리파이 디스크 포멧 추가
+### 라즈베리파이 인식되는 디스크 파일시스템 추가
 ``` shell
 #NTFS
 apt-get install ntfs-3g
