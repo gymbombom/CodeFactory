@@ -1,6 +1,6 @@
 # windows 제품키 확인 스크립트
 
-* filename.vbs 로 저장
+* filename.vbs 로 저장(win7 , win10 다됨)
 ```vbs
 Set WshShell = CreateObject("WScript.Shell")
 MsgBox ConvertToKey(WshShell.RegRead("HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\DigitalProductId"))
