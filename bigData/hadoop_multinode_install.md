@@ -50,6 +50,12 @@ chmod 0600 ~/.ssh/authorized_keys;
       <value>false</value> 
   </property>
 
+<!-- temp 디렉토리 경로  default는 아닐듯... -->
+  <property>
+      <name>hadoop.tmp.dir</name>
+      <value>/home/hes/data/tmp</value>
+  </property>
+
 <!-- 아래 설정은 default 는 아닌듯...
    <property> 
       <name>dfs.permissions</name> 
@@ -76,10 +82,6 @@ chmod 0600 ~/.ssh/authorized_keys;
       <final>true</final> 
    </property> 
 
-   <property> 
-      <name>dfs.replication</name> 
-      <value>1</value> 
-   </property> 
 -->
 
  <property>
