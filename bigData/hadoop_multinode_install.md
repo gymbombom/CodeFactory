@@ -184,6 +184,10 @@ start)
         $HADOOP_HOME/sbin/start-all.sh
 ;;
 
+stop)
+        $HADOOP_HOME/sbin/stop-all.sh
+;;
+
 *)
         print_usage
         exit 1
