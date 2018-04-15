@@ -15,6 +15,23 @@
 # ping hadoop-slave-2
 ```
 
+### 환경변수 설정
+```shell
+# vi .bashrc
+
+#java
+export JAVA_HOME="$HOME/jdk1.8.0_121";
+export PATH="$PATH:$JAVA_HOME/bin";
+
+#hadoopexport HADOOP_HOME="$HOME/hadoop-2.7.2";
+export HADOOP_HOME="$HOME/hadoop-2.7.2";
+export PATH="$PATH:$HADOOP_HOME/bin";
+```
+```shell
+source ./.bashrc
+```
+
+
 ### ssh key 생성
 ```shell
 # cluster 에 포함된 모든 노드에서 ssh key 생성 후 배포하여야 한다.
@@ -109,3 +126,79 @@ chmod 0600 ~/.ssh/authorized_keys;
 -->  
 </configuration>
 ```
+
+### hadoop-env.sh 설정(변경)
+```shell
+export JAVA_HOME=${JAVA_HOME}
+```
+
+### master node 설정
+```shell
+# vi $HADOOP_HOME/etc/hadoop/masters
+hadoop-master
+```
+
+### Slave node 설정
+```shell
+hadoop-slave-1
+hadoop-slave-2
+```
+
+
+### 클러스터링 할 모든 node에 배포
+```shell
+#/bin/bash
+
+#server variables
+SERVER_IP=("hadoop-master" "hadoop-slave-1" "hadoop-slave-2")
+SERVER_USER="user"
+
+#client variables
+CLIENT_PWD=`pwd | xargs`;
+CLIENT_FILENAME=$1;
+
+#run script
+for i in ${SERVER_IP[@]}
+do
+	scp -r $CLIENT_FILENAME $SERVER_USER@$i:$CLIENT_PWD
+done
+```
+
+### namenode Format
+```shell
+hadoop namenode –format
+```
+
+### shell scropt 작성
+```shell
+#!/bin/bash
+
+function print_usage()
+{
+        echo "start :hadoop start"
+}
+
+case "$1" in
+
+start)
+        $HADOOP_HOME/sbin/start-all.sh
+;;
+
+*)
+        print_usage
+        exit 1
+;;
+
+esac
+```
+
+### hadoop start
+```shell
+hadoop.sh start
+```
+
+
+> resourcemanager port : 8088  
+> namenode port : 50070  
+> datanode port : 50075  
+> secondary namenode port : 50090>
