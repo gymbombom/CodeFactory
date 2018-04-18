@@ -1,4 +1,5 @@
-(*스타벅스 starbucs 자동 로그인 스크립트 *)
+(*스타벅스 starbucks 자동 로그인 스크립트 *)
+--스타벅스 로그인 페이지 변경으로 사용불가
 
 --터미널 열고 명령어 입력
 tell application "Terminal"
