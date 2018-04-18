@@ -8,6 +8,7 @@
 ###Client 작업
 ```shell
 ssh-keygen -t rsa /*1.rsa 공개키 방식으로 암호화키 생성 ~/.ssh/ 위치에 생성됨.*/
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa #enter 키 입력없이 바로 key생성
 ```
 
 ```shell
