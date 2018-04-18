@@ -8,7 +8,6 @@
 
 ```xml
 <!-- core-site.xml 에 아래내용 추가 -->
-<!-- 설정 이후에 hadoop restart 해야함. -->
  <property>
     <name>hadoop.proxyuser.#HTTPFSUSER#.hosts</name>
     <value>*</value>
@@ -16,6 +15,22 @@
 
 <property>
     <name>hadoop.proxyuser.#HTTPFSUSER#.groups</name>
+    <value>*</value>
+</property>
+```
+
+```xml
+<!-- httpfs-site.xml 에 아래내용 추가 -->
+<!-- 아래 설정이 없으면, 
+      http://13.125.167.96:14000/webhdfs/v1/tmp?op=LISTSTATUS&user.name=aaa 과 같이 url 에 user.name 파라미터를 추가해야함. -->
+<!-- 설정 이후에 hadoop restart 해야함. -->
+ <property>
+    <name>httpfs.proxyuser.#HTTPFSUSER#.hosts</name>
+    <value>*</value>
+</property>
+
+<property>
+    <name>httpfs.proxyuser.#HTTPFSUSER#.groups</name>
     <value>*</value>
 </property>
 ```
