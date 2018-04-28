@@ -11,7 +11,9 @@ brew install dfu-programmer
 
 ```shell
 #  firmware Build 방법
-# controller = atmega32 <hhkb pro2의 경우>
+# atmega32u4(for HHKB/FC660C/FC980C Alt Controllers and USB-USB Conveter
+# atmega32u2(for other Converters and Alps64)
+# controller = atmega32u4  <hhkb pro2의 경우>
 dfu-programmer <controller> erase --force
 dfu-programmer <controller> flash <your_firmware.hex>
 dfu-programmer <controller> reset
