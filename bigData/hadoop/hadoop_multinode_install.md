@@ -140,6 +140,7 @@ hadoop-master
 
 ### Slave node 설정
 ```shell
+# vi $HADOOP_HOME/etc/hadoop/slaves
 hadoop-slave-1
 hadoop-slave-2
 ```
