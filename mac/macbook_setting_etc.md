@@ -36,4 +36,38 @@
  	Arrange By:Date added, Sort By:Name
  ```
 
+###  맥북 Sleep모드 확인
+
+```shell
+pmset -g
+System-wide power settings:
+Currently in use:
+ standbydelay         10800 #hibernatemode delay시간
+ standby              1
+ womp                 1
+ halfdim              1
+ hibernatefile        /var/vm/sleepimage
+ powernap             1
+ gpuswitch            2
+ networkoversleep     0
+ disksleep            10
+ sleep                1
+ autopoweroffdelay    28800
+ hibernatemode        3
+    #hibernatemode 0 : 선잠자기(Simple Sleep).
+	#hibernatemode 1 : 깊은 잠자기(Deep Sleep). 동면. 하이버네이션.
+    #hibernatemode 3 : 안전 잠자기(Safe Sleep). 0 + 1 모드 함께 사용.
+ autopoweroff         1
+ ttyskeepawake        1
+ displaysleep         10
+ tcpkeepalive         1
+ acwake               0
+ lidwake              1
+```
+
+```shell
+#### 시간및 모드 변경#####
+$sudo pmset -a standbydelay [초] 
+$sudo pmset -a hibernatemode [모드] 
+```
 

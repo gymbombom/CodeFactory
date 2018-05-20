@@ -1,5 +1,7 @@
 # hadoop HA(HighAvailability) setting  
-[참고자료](https://hadoop.apache.org/docs/r2.6.0/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html)
+[참고자료](https://hadoop.apache.org/docs/r2.6.0/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html)  
+[NameNode HA(HighAvailability)](http://bloodguy.tistory.com/entry/Hadoop-NameNode-HAHighAvailability)
+
 ### hadoop HA 구성예(clustering 까지 완료상태에서 진행해야함.)
 > hadoop1 : namenode(active), datanode  
 > hadoop2 : namenode(standby, datanode  
