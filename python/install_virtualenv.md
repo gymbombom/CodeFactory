@@ -1,4 +1,4 @@
-# virtualenv 설치
+# virtualenv 설치 및 기본사용방법
 
 ### virtualenv 설치
 > 격리된 python 개발 환경을 만드는 tool
@@ -8,12 +8,12 @@
 
 ### 3. virtualenv 기본 사용법
 ```shell
-     $ virtualenv <env_dir> # 가상환경 생성
-     $ virtualenv --python=python3.3 <env_dir> # python 버전을 선택하여 가상환경 생성
+   $ virtualenv <env_dir> # 가상환경 생성
+   $ virtualenv --python=python3.3 <env_dir> # python 버전을 선택하여 가상환경 생성
 	 or
-	 $ virtualenv --python=/home/django/python/bin/python3.6 <env_dir>
-	 $ source $<env_dir>/bin/activate #가상환경으로 진입
-	 (venv) deactivate # 가상환경 빠져나오기
+   $ virtualenv --python=/home/django/python/bin/python3.6 <env_dir>
+   $ source $<env_dir>/bin/activate #가상환경으로 진입
+   $ (venv) deactivate # 가상환경 빠져나오기
 ```
 
 ```shell

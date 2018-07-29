@@ -2,17 +2,17 @@
 
 > Cassandra version : 3.10
 > Java version : 1.8.0_121
-[cassandra Achive Download](https://archive.apache.org/dist/cassandra/)  
+[cassandra Achive Download Pages](https://archive.apache.org/dist/cassandra/)  
 
 ### Cassandra Binary Download
 ```shell
-curl -O https://archive.apache.org/dist/cassandra/3.10/apache-cassandra-3.10-bin.tar.gz # Cassandra binary Download
-tar -xvzf apache-cassandra-3.10-bin.tar.gz # 압축해제
+$ curl -O https://archive.apache.org/dist/cassandra/3.10/apache-cassandra-3.10-bin.tar.gz # Cassandra binary Download
+$ tar -xvzf apache-cassandra-3.10-bin.tar.gz # 압축해제
 ```
 
 ###  환경변수 추가
 ```shell
-#vi .bashrc
+$ vi .bashrc
 #Cassandra Export
 export CASSANDRA_HOME="/home/hes/apache-cassandra-3.10";
 export PATH="$PATH:$CASSANDRA_HOME/bin";
@@ -27,8 +27,8 @@ data_file_directories:
 
 ### Cassnadra 실행 및 확인
 ```shell
-$CASSANDRA_HOME/bin/cassandra # Cassandra 실행
-$CASSANDRA_HOME/bin/nodetool status # Cassandra 상태확인
+$ $CASSANDRA_HOME/bin/cassandra # Cassandra 실행
+$ $CASSANDRA_HOME/bin/nodetool status # Cassandra 상태확인
 Datacenter: datacenter1
 =======================
 Status=Up/Down
@@ -46,5 +46,5 @@ UN  127.0.0.1  103.68 KiB  256          100.0%            fce23ff3-8649-4545-902
 
 ### Cassandra 종료
 ```shell
-$CASSANDRA_HOME/bin/stop-server
+$ $CASSANDRA_HOME/bin/stop-server
 ```

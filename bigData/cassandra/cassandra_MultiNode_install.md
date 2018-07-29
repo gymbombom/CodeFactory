@@ -7,7 +7,7 @@
 ### Default DataSet 삭제
 
 ```shell
-rm -rf /var/lib/cassandra/data/system/*
+$ rm -rf /var/lib/cassandra/data/system/* #default Dataset은 이미 Cassandra Single Node에서 실행했을 경우에 삭제한다.
 ```
 
 
@@ -49,7 +49,7 @@ auto_bootstrap: false
 ###  Cassandra Pakage 압축 및 클러스터 서버 전송
 
 ```shell
-tar -cvf apache-cassandra-3.10.tar apache-cassandra-3.10/
+$ tar -cvf apache-cassandra-3.10.tar apache-cassandra-3.10/
 ```
 
 ### 클러스터 서버 배포 스크립트

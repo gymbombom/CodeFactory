@@ -3,15 +3,15 @@
 
 ### 디스크 포멧 확인 
 ```shell
-    df -hl # 디스크 확인
-    sudo file -s /dev/xvda* # df 로 파일시스템을 찾은 후 disk 파일시스템 확인
-    # ext2/ext3/ext4 일 경우 resize2fs 명령을 사용해야 함.
-    # xfs 일경우 xfs_growfs 명령을 사용해야 함.
+    $ df -hl # 디스크 확인
+    $ sudo file -s /dev/xvda* # df 로 파일시스템을 찾은 후 disk 파일시스템 확인
+    	# ext2/ext3/ext4 파일시스템일 경우 resize2fs 명령을 사용해야 함.
+    	# xfs 일경우 xfs_growfs 명령을 사용해야 함.
 ```
 
 ### 디스크 확장이 필요한지 확인 
 ```shell
-[ec2-user ~]$ lsblk
+$ lsblk
 NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
 xvda    202:0    0  30G  0 disk
 └─xvda1 202:1    0  30G  0 part /
@@ -23,11 +23,11 @@ xvdf    202:80   0  35G  0 disk
 ```
 
 ```shell
-[ec2-user ~]$ df -h
+$ df -h
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/xvda1            8.0G  943M  6.9G  12% /
 tmpfs                 1.9G     0  1.9G   0% /dev/shm
 /dev/xvdf            1014M   33M  982M   4% /mnt
 
-sudo resize2fs /dev/xvdf1 # ext2/ext3/ext4 파일시스템의 경우 이 명령으로 디스크를 확장해 준다.
+$ sudo resize2fs /dev/xvdf1 # ext2/ext3/ext4 파일시스템의 경우 이 명령으로 디스크를 확장해 준다.
 ```
