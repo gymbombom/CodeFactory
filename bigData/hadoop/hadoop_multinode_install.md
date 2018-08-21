@@ -1,21 +1,23 @@
 # Hadoop Multinode 설치
->> hadoop 버전 : hadoop-2.7.2  
->> java 버전 : 1.8.0_121  
->> Red Hat Enterprise Linux Server 7.2 (Maipo)
+> hadoop 버전 : hadoop-2.7.2  
+> java 버전 : 1.8.0_121  
+> Red Hat Enterprise Linux Server 7.2 (Maipo)
 
 ### /etc/hosts 파일수정
+* /etc/hosts 파일
 ```shell
 192.168.1.109 hadoop-master 
 192.168.1.145 hadoop-slave-1 
 192.168.56.1 hadoop-slave-2
 
 # 위의 예시와 같이 수정 후 테스트(cluster 에 포함된 모든 노드에서 수정)
-# ping hadoop-master
-# ping hadoop-slave-1
-# ping hadoop-slave-2
+$ ping hadoop-master
+$ ping hadoop-slave-1
+$ ping hadoop-slave-2
 ```
 
 ### 환경변수 설정
+* $(HOME)/.bashrc
 ```shell
 # vi .bashrc
 
@@ -28,23 +30,23 @@ export HADOOP_HOME="$HOME/hadoop-2.7.2";
 export PATH="$PATH:$HADOOP_HOME/bin";
 ```
 ```shell
-source ./.bashrc
+$ source ./.bashrc
 ```
 
 
 ### ssh key 생성
 ```shell
 # cluster 에 포함된 모든 노드에서 ssh key 생성 후 배포하여야 한다.
-ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa  #ssh-key 생성
+$ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa  #ssh-key 생성
 ```
 
 ### ssh key 배포
 ```shell
 # cluster 에 포함된 모든 노드에서 배포해야 함.
-ssh-copy-id -i ~/.ssh/id_rsa.pub hes@hadoop-master;
-ssh-copy-id -i ~/.ssh/id_rsa.pub hes@hadoop-slave-1;
-ssh-copy-id -i ~/.ssh/id_rsa.pub hes@hadoop-slave-2;
-chmod 0600 ~/.ssh/authorized_keys;
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub hes@hadoop-master;
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub hes@hadoop-slave-1;
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub hes@hadoop-slave-2;
+$ chmod 0600 ~/.ssh/authorized_keys;
 ```
 
 ### core-site.xml 파일 설정
@@ -199,11 +201,11 @@ esac
 
 ### hadoop start
 ```shell
-hadoop.sh start
+$ hadoop.sh start
 ```
 
 
 > resourcemanager port : 8088  
 > namenode port : 50070  
 > datanode port : 50075  
-> secondary namenode port : 50090>
+> secondary namenode port : 50090

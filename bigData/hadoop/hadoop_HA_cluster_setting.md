@@ -4,7 +4,7 @@
 
 ### hadoop HA 구성예(clustering 까지 완료상태에서 진행해야함.)
 > hadoop1 : namenode(active), datanode  
-> hadoop2 : namenode(standby, datanode  
+> hadoop2 : namenode(standby), datanode  
 > hadoop3 : datanode
 
 ### Zookeeper 설치

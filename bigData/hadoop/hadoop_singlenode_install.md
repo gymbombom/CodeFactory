@@ -1,7 +1,7 @@
 # HADOOP 설치
->> hadoop 버전 : hadoop-2.7.2  
->> java 버전 : 1.8.0_121  
->> Red Hat Enterprise Linux Server 7.2 (Maipo)
+> hadoop 버전 : hadoop-2.7.2  
+> java 버전 : 1.8.0_121  
+> Red Hat Enterprise Linux Server 7.2 (Maipo)
 
 
 ### SingleNode 설치
@@ -53,24 +53,24 @@
 
 * 인증없이 ssh localhost 에 접속할수 있는지 체크
 ```shell
-    ssh localhost
+    $ ssh localhost
     # 접속할수 없다면 아래 실행하여 ssh 키 생성
-    ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
-    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-    chmod 0600 ~/.ssh/authorized_keys
+    $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+    $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    $ chmod 0600 ~/.ssh/authorized_keys
 ```
 
 * namenode 포멧
 ```shell
-    bin/hdfs namenode -format
+   $ bin/hdfs namenode -format
 ```
 
 * namenode, datanode start
 ```shell
-    sbin/start-dfs.sh
+   $ sbin/start-dfs.sh
 ```
 
 *namenode web interface 에서 확인
->> NameNode - http://localhost:50070/
+> NameNode - http://localhost:50070/
 
 

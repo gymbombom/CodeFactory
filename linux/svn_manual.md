@@ -68,15 +68,15 @@ svnserve is stopped
 ```
 
 ##### 저장소 최상위 디렉토리로 이동후, 저장소를 생성한다.
->[root@barosvr01 ~]# cd /home/svn/repos
->[root@barosvr01 repos]#  svnadmin create --fs-type fsfs 저장소명
+```shell
+	$ cd /home/svn/repos
+	$ svnadmin create --fs-type fsfs 저장소명
 
 
 ex)
-```shell
+​```shell
 	[root@barosvr01 ~]# cd /home/svn/repos
 	[root@barosvr01 repos]#  svnadmin create --fs-type fsfs test
-
 ```
 
 
@@ -117,7 +117,7 @@ ex)
 #####repository 최상위 디렉토리로 설정하여 기동한다.
 ```shell
 svnserve -d -r /home/svn/repos
-```   
+```
 ### service 명령어로 서버 기동하기 [옵션]
 ```shell
 [root@barosvr01 ~]# vi /etc/sysconfig/svnserve
