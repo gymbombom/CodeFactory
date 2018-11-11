@@ -82,6 +82,13 @@ void deleteFirstNode(linkedList_t *ptrList)
 	{
 		tempNode = ptrList->head->next;
 		free(ptrList->head);
+
+		/* tempNode가 Head 가 될 것이기 때문이 NULL 을 입력해준다 */
+		if(tempNode != NULL)
+		{
+			tempNode->prev = NULL;
+		}
+
 		ptrList->head = tempNode;
 
 		if(ptrList->head == NULL)
@@ -98,8 +105,8 @@ void deleteFirstNode(linkedList_t *ptrList)
 	
 }
 
-#if 0
-void deleteAllNode(linkedList *ptrList)
+
+void deleteAllNode(linkedList_t *ptrList)
 {
 	while(ptrList->head != NULL)
 	{
@@ -111,7 +118,46 @@ void deleteAllNode(linkedList *ptrList)
 		printf("deleteAllNode \n");
 	}
 }
-#endif
+
+
+int deleteNode(linkedList_t *ptrList,node_t* node)
+{
+
+	if(node == NULL)
+	{
+		printf("delteNode Falied!! node is NULL!");
+		return -1;	
+	}
+
+	/*head Node 일경우 */
+	if(node->prev == NULL)
+	{
+		deleteFirstNode(ptrList);
+		return 0;
+	}
+
+
+	/* 중간 Node일 경우 */
+	if(node->prev != NULL && node->next != NULL)
+	{
+		node->prev->next = node->next;
+		node->next->prev = node->prev;
+		free(node);
+		ptrList->size--;
+		return 0;
+	}
+
+	/* 마지막 node 일 경우 */
+	if(node->next == NULL)
+	{
+		node->prev->next = NULL;
+		ptrList->tail = node->prev;
+		free(node);
+		ptrList->size--;
+		return 0;
+	}
+}
+
 
 void printNode(linkedList_t *ptrList)
 {
@@ -171,7 +217,7 @@ int main()
 
 	data4.num = 4;
 	data4.chr = 'D';
-	strncpy(data4.string,"STRING3",STRING_LEN);
+	strncpy(data4.string,"STRING4",STRING_LEN);
 
 
 	linkedList_t list;
@@ -179,14 +225,34 @@ int main()
 	createNode(&list,data);
 	createNode(&list,data2);
 	createNode(&list,data3);
-
-	deleteFirstNode(&list);
-	deleteFirstNode(&list);
-	deleteFirstNode(&list);
-
-
 	createNode(&list,data4);
 
+	node_t* tmpNode = list.head;
+	while(tmpNode != NULL )
+	{
+
+		if(tmpNode->data.chr == 'A')
+		{
+			deleteNode( &list,tmpNode);
+		}
+/*
+		if(tmpNode->data.chr == 'B')
+		{
+			deleteNode( &list,tmpNode);
+		}
+
+		if(tmpNode->data.chr == 'C')
+		{
+			deleteNode( &list,tmpNode);
+		}
+*/
+		if(tmpNode->data.chr == 'D')
+		{
+			deleteNode( &list,tmpNode);
+		}
+
+		tmpNode = tmpNode->next;
+	}
 
 
 	printNode(&list);
