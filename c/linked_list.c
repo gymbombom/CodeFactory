@@ -77,6 +77,11 @@ void deleteFirstNode(linkedList_t *ptrList)
 {
 	node_t *tempNode =  NULL;
 
+	if(ptrList == NULL)
+	{
+		printf("Linked list is NULL. deleteFirstNode() Failed!! \n");
+	}
+
 
 	if(ptrList->head !=NULL && ptrList->tail != NULL)
 	{
@@ -108,6 +113,11 @@ void deleteFirstNode(linkedList_t *ptrList)
 
 void deleteAllNode(linkedList_t *ptrList)
 {
+	if(ptrList == NULL)
+	{
+		printf("Linked list is NULL. deleteAllNode() Failed!! \n");
+	}
+
 	while(ptrList->head != NULL)
 	{
 		deleteFirstNode(ptrList);
@@ -122,7 +132,6 @@ void deleteAllNode(linkedList_t *ptrList)
 
 int deleteNode(linkedList_t *ptrList,node_t* node)
 {
-
 	if(node == NULL)
 	{
 		printf("delteNode Falied!! node is NULL!");
@@ -161,6 +170,11 @@ int deleteNode(linkedList_t *ptrList,node_t* node)
 
 void printNode(linkedList_t *ptrList)
 {
+	if(ptrList == NULL)
+	{
+		printf("Linked list is NULL. printNode() Failed!! \n");
+	}
+
 	node_t *tempNode = ptrList->head;
 	printf("Linked List Size : %d \n",ptrList->size);
 
@@ -185,7 +199,7 @@ void insertData(node_t *newNode, data_t data)
 {
 	newNode->data.num = data.num;
 	newNode->data.chr = data.chr;
-	strcpy(newNode->data.string, data.string);
+	strncpy(newNode->data.string, data.string,STRING_LEN);
 }
 
 
@@ -225,7 +239,7 @@ int main()
 	createNode(&list,data);
 	createNode(&list,data2);
 	createNode(&list,data3);
-	createNode(&list,data4);
+	//createNode(&list,data4);
 
 	node_t* tmpNode = list.head;
 	while(tmpNode != NULL )
@@ -235,7 +249,7 @@ int main()
 		{
 			deleteNode( &list,tmpNode);
 		}
-/*
+
 		if(tmpNode->data.chr == 'B')
 		{
 			deleteNode( &list,tmpNode);
@@ -245,15 +259,16 @@ int main()
 		{
 			deleteNode( &list,tmpNode);
 		}
-*/
+/*
 		if(tmpNode->data.chr == 'D')
 		{
 			deleteNode( &list,tmpNode);
 		}
-
+*/
 		tmpNode = tmpNode->next;
 	}
 
+	createNode(&list,data4);
 
 	printNode(&list);
 }
