@@ -29,14 +29,14 @@ apt-get install xrdp
 ### 라즈베리파이 한글설정
 ``` shell
 sudo apt-get -y install ibus-hangul
-sudo apt-get install fonts-unfonts-core
+sudo apt-get install fonts-unfonts-core -y #이것만 설치해도 한글은 나오는거 같음 xwindow
 ```
 ~~sudo apt-get -y install ttf-unfonts-core~~
 
 ### 라즈베리파이 인식되는 디스크 파일시스템 추가
 ``` shell
 #NTFS
-apt-get install ntfs-3g
+apt-get install ntfs-3g -y
 #EXFAT
-apt-get install exfat-fuse
+apt-get install exfat-fuse -y
 ```
