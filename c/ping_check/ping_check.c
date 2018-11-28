@@ -101,11 +101,13 @@ int main()
         thpool_add_work(thpool, (void*)pingChk, (ipList+i)->ip);
     }
 
-   thpool_wait(thpool);
     
-   thpool_destroy(thpool);
 
+    thpool_wait(thpool);
 
+    thpool_destroy(thpool);
+
+    free(ipList);
 
 #if 0
     pthread_t p_thread[THREAD_CNT]; 
