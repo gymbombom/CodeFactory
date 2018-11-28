@@ -1,0 +1,5 @@
+-- command 실행 후 결과 얻어오기.. 참고
+http://yagi815.tistory.com/991
+
+--컴파일 방법
+gcc ping_check.c thpool.c -D THPOOL_DEBUG -pthread -o ping_check
