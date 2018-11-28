@@ -35,7 +35,7 @@
     $ (gdb)set listsize <size> #소스출력시 라인사이즈 지정
     $ (gdb)step(s) #소스 한줄씩 실행 함수를 포함하면 함수 안으로 진입
     $ (gdb) bt # Back Trace 프로그램 스택을 역으로 탐색
-    
+    $ (gdb) up #상위 스택프레임으로 이동
     $ (gdb) display <variables name> # 단계가 진행될때마다 변수 자동 디스플레이
     $ (gdb) undisplay <variables name> # display 취소
     $ (gdb)info locals #local 변수들 값 모두 출력
