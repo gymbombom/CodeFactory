@@ -1,14 +1,15 @@
 CC = gcc
 SRC = $(wildcard *.c)
-DEBUG = -g
+OPTS = -g
+DEBUG = -D THPOOL_DEBUG
 LIBS = -pthread
 APP = ping_check
 
 all: $(SRC)
-	$(CC) -o $(APP)  $(SRC) $(DEBUG) $(LIBS)
+	$(CC) -o $(APP)  $(SRC) $(OPTS) $(DEBUG) $(LIBS)
 .SUFFIXES: .c.o
 	.c.o:
-	$(CC) -c -o $@ $< $(DEBUG) $(LIBS)
+	$(CC) -c -o $@ $< $(OPTS) $(DEBUG) $(LIBS)
 
 
 clean :
