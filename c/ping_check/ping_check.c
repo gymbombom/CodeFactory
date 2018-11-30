@@ -4,8 +4,38 @@
 
 void pingChk(char* ip)
 {
-    printf("ip2 : %s \n", ip);
-    printf("Thread #%u working on task1\n", (int)pthread_self());
+    FILE* fp = NULL;
+    size_t readSize = 0;
+    char command[COMMAND_LEN];
+    char pszBuff[1024];
+
+     printf("Thread #%u working on task1\n", (int)pthread_self());
+
+    sprintf(command, "ping -c 3 -w 10 %s", ip);
+
+    printf("command :[%s] \n", command);
+
+    fp = popen(command,"r");
+    if(!fp)
+    {
+        printf("error [%d:%s] \n", errno, strerror(errno));
+        return ERROR;
+    }
+
+    readSize = fread((void*)pszBuff, sizeof(char), 1024-1, fp);
+
+    if(readSize == 0)
+    {
+        pclose(fp);
+        printf("error [%d:%s] \n", errno, strerror(errno));
+        return ERROR;
+    }
+
+    pclose(fp);
+    pszBuff[readSize] = '\0';
+
+    printf("result :[%s] \n", pszBuff);
+    
     return SUCCESS;
 }
 
@@ -35,8 +65,9 @@ int lineCount(char* fileName)
     return count;
 }
 
+
 char* rtrim(char* s) {
-  char t[MAX_STR_LEN];
+  char t[STR_LEN];
   char *end;
 
   // Visual C 2003 이하에서는
@@ -52,6 +83,9 @@ char* rtrim(char* s) {
   return s;
 }
 
+
+
+
 int main()
 {
      FILE *pFile = NULL;
@@ -60,7 +94,7 @@ int main()
      ipList_t* ipList = NULL;
 
     /*thread pool 갯수 지정 */
-    threadpool thpool = thpool_init(THREAD_CNT);
+     threadpool thpool = thpool_init(THREAD_CNT);
 
     /* 읽을 파일의 라인수를 체크 */
     lineCnt = lineCount(CHECKLIST_FILE_PATH);
@@ -86,16 +120,22 @@ int main()
             printf( "pStr:[%s] \n", pStr );
             printf( "strTemp:[%s] \n", strTemp );
 
-            //thpool_add_work(thpool, (void*)pingChk, &s);
-            ss = rtrim(strTemp);
-            strncpy((ipList+i)->ip, ss, STR_LEN);
-            i++;
+            if(pStr != NULL)
+            {
+                pStr = rtrim(pStr);
+                char* trimStr;
+
+                //strncpy((ipList+i)->ip, pStr, STR_LEN); //ipList+0 번째가 깨진다.
+                strcpy((ipList+i)->ip, pStr);
+                 i++;
+                
+            }
         }
 
         fclose( pFile );
     }
 
-    for(i =0;i < lineCnt;i++)
+    for(i =0 ;i < lineCnt;i++)
     {
         printf("ipList[%d]:[%s] \n",i,(ipList+i)->ip);
         thpool_add_work(thpool, (void*)pingChk, (ipList+i)->ip);
@@ -193,3 +233,4 @@ int fRead()
     return SUCCESS;
 }
 #endif
+
