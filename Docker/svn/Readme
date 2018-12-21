@@ -1,0 +1,6 @@
+# build command
+docker build --tag svn:1  .
+
+# run command
+docker run -it -p 3690:3690 -v /home/pi/svn:/home/svn/repos --name svn svn:1 /bin/bash
+
