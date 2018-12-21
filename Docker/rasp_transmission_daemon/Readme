@@ -1,0 +1,2 @@
+--transmission
+docker run -i -t -p 9091:9091  -v /home/pi/test/blue:/home/transmission/share --name tblue tblue:1 /bin/bash
