@@ -1,0 +1,12 @@
+# build command
+docker build --tag rasp_git:1  .
+
+# run command
+#docker run -it --name git rasp_git:1 /bin/bash
+docker run -it -p 8822:22 -v /home/pi/git:/home/git/repos --name git rasp_git:1 /bin/bash
+
+su git; git init --bare /home/git/repos/test.git
+
+touch /home/git/.ssh/authorized_keys
+chmod 644 /home/git/.ssh/authorized_keys
+chmod 700 /home/git/.ssh
