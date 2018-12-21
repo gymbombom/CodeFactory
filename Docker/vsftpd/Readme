@@ -1,0 +1,1 @@
+docker run -i -t -p 20:20 -p 21:21 -p 10090:10090 -p 10091:10091 -p 10092:10092 -p 10093:10093 -p 10094:10094 -p 10095:10095 -p 10096:10096 -p 10097:10097 -p 10098:10098 -p 10099:10099 -p 10100:10100 -v /home/pi/share:/home/share/share --name vsftpd rasp_vsftpd:1 /bin/bash
