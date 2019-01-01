@@ -39,3 +39,9 @@ echo "swapon /home/swapfile" >> /etc/rc.d/rc.local #  "swapon /home/swapfile" �
 swapoff <fileName> 
 ex) swapoff /home/swapfile
 ```
+
+# 라즈베리파이 swapMemory 설정
+```shell
+	 # vi /etc/dphys-swapfile
+	 CONF_SWAPSIZE=100 #MB 단위. 해당항목 수정
+```
