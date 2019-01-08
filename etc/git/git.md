@@ -77,3 +77,11 @@
     $ git commit -m 'commit message' # 되돌린 후 다시 commit 하고,
     $ git push origin +master # 강제로 push 한다. +의 의미는 데이터가 손실되도 무시한다.
 ```
+
+### git repository commit 내역까지 이동시키는 법
+```shell
+	$ git clone --mirror https://gitlab.com/dlfrb2002/codefactory.git # 과거 reposity 복사
+	$ cd codefactory.git # 저장소로 이동
+	$ git remote set-url --push origin https://github.com/likeel/secret.git # 이동시킬 저장소 url 설정
+	$ git push --mirror #이동시킬 저장소로 Push
+```
