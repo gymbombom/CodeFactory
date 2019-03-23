@@ -11,6 +11,9 @@ brew install dfu-programmer
 
 ```shell
 #  firmware Build 방법
+###############
+# Build 전 키보드 빨간버튼 꾹 눌러야 함.
+###############
 # atmega32u4(for HHKB/FC660C/FC980C Alt Controllers and USB-USB Conveter
 # atmega32u2(for other Converters and Alps64)
 # controller = atmega32u4  <hhkb pro2의 경우>
