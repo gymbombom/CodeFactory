@@ -1,4 +1,5 @@
 # Hadoop Multinode 설치
+> Singgle 노드 먼저 구성후, Multinode로 넘어가는것을 추천
 > hadoop 버전 : hadoop-2.7.2  
 > java 버전 : 1.8.0_121  
 > Red Hat Enterprise Linux Server 7.2 (Maipo)
