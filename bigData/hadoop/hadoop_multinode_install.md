@@ -53,6 +53,7 @@ $ chmod 0600 ~/.ssh/authorized_keys;
 ### core-site.xml 파일 설정
 ```xml
 <configuration>
+<!-- fs.default.name 은 Cluster인 경우, namenode URI로 설정 ? -->  
    <property> 
       <name>fs.default.name</name> 
       <value>hdfs://hadoop-master:9000/</value> 
