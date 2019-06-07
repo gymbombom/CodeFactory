@@ -17,7 +17,7 @@ cp $ZOOKEEPER_HOME/conf/zoo_sample.cfg $ZOOKEEPER_HOME/conf/zoo.cfg
 ```shell
 # vi zoo.cfg 설정
 
-dataDir=dataDir=/home/hes/data/zookeeper #myid 파일이 위치한 data Dir 설정
+dataDir=/home/hes/data/zookeeper #myid 파일이 위치한 data Dir 설정
 maxClientCnxns=0 #0으로 설정하면 client 제한이 없어짐.
 maxSessionTimeout=180000 #session Timeout 설정
 server.1=hadoop1:2888:3888
@@ -27,8 +27,8 @@ server.3=hadoop3:2888:3888
 
 ### data Directory 생성 , myid 생성
 ```shell
-mkdir $ZOOKEEPER_HOME/data # directory 생성
-echo 1 > $ZOOKEEPER_HOME/data/myid # myid 파일추가
+#mkdir $ZOOKEEPER_HOME/data # directory 생성
+echo 1 > $dataDir/myid # myid 파일추가(zoo.cfg파일의 $dataDir 디렉토리 아래에 myid 파일 생성)
 ```
 
 > 현재 zookeeper 설정 압축하고 2,3번 서버에도 scp 로 보냄.  
