@@ -18,11 +18,13 @@ export CASSANDRA_HOME="/home/hes/apache-cassandra-3.10";
 export PATH="$PATH:$CASSANDRA_HOME/bin";
 ```
 
-### Cassadra DataSet Directory 변경
+### Cassadra 설정파일 변경
 ```yaml
 # vi cassandra.yaml 아래항목 설정
 data_file_directories:
-     - /home/hes/data/cassandra/data
+     - /home/hes/datadir/cassandra/data
+commitlog_directory: /home/hes/datadir/cassandra/commitlog
+saved_caches_directory: /home/hes/datadir/cassandra/saved_caches
 ```
 
 ### Cassnadra 실행 및 확인
