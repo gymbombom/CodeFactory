@@ -1,5 +1,7 @@
 #!/bin/bash
 
+HADAAOP_HOME="/home/hadoop/hadoop-2.7.2";
+
 function print_usage() {
     echo "start)";
     echo "stop)";
@@ -9,12 +11,12 @@ function print_usage() {
 case "$1" in
 
         start)
-                /home/hadoop/hadoop-2.7.2/sbin/hadoop-daemon.sh start namenode;
-                /home/hadoop/hadoop-2.7.2/sbin/hadoop-daemon.sh start datanode;
+                $HADOOP_HOME/sbin/hadoop-daemon.sh start namenode;
+                $HADOOP_HOME/sbin/hadoop-daemon.sh start datanode;
         ;;
         stop)
-                /home/hadoop/hadoop-2.7.2/sbin/hadoop-daemon.sh stop datanode;
-                /home/hadoop/hadoop-2.7.2/sbin/hadoop-daemon.sh stop namenode;
+                $HADOOP_HOME/sbin/hadoop-daemon.sh stop datanode;
+                $HADOOP_HOME/sbin/hadoop-daemon.sh stop namenode;
         ;;
 
         *)
