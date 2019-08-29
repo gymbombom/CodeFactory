@@ -23,8 +23,10 @@ export PATH="$PATH:$CASSANDRA_HOME/bin";
 # vi cassandra.yaml 아래항목 설정
 data_file_directories:
      - /home/hes/datadir/cassandra/data
+     - /home/hes/datadir2/cassandra/data #필수는 아님 다음과 같이 data_directory를 여러개 쓸수도 있음.
 commitlog_directory: /home/hes/datadir/cassandra/commitlog
 saved_caches_directory: /home/hes/datadir/cassandra/saved_caches
+hints_directory: /home/hes/datadir/cassandra/hints
 ```
 
 ### Cassnadra 실행 및 확인
