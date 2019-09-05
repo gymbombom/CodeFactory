@@ -16,6 +16,7 @@
 	$ brew search <package_name> # 패키지 검색
 	$ brew -v # 버전확인
 	$ brew info <package_name> # 패키지 상세보기
+	$ brew cask # 맥용 유틸리티 설치(주로 GUI용 앱 설치할때 쓰는거 같음.)
 ```
 
 ### homebrew 설치제거 ??
