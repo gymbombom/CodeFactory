@@ -10,3 +10,6 @@ sudo wget -qO- https://get.docker.com/ | sh
 #$ sudo docker rmi hello-world 
 ```
 
+```shell
+brew cask install docker #맥북은 이렇게 설치
+```
