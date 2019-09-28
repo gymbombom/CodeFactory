@@ -62,7 +62,7 @@
 ### 간단한 사용법
 ```shell
     git remote -v # 원격저장소 보기
-    git remote set-url <remote repository name> <remote repository url>
+    git remote set-url <remote repository name> <remote repository url> #원격 저장소 URL변경
     ex) git remote set-url origin https://github.com/user/repo.git
 ```
 
