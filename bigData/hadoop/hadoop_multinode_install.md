@@ -208,6 +208,7 @@ $ hadoop.sh start
 
 
 > resourcemanager port : 8088  
-> namenode port : 50070  
+> namenode web UI port : 50070 (hadoop 3.0 이후 : 9870 
 > datanode port : 50075  
 > secondary namenode port : 50090
+> HDFS service port: 9000
