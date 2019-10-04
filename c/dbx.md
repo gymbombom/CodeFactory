@@ -45,4 +45,5 @@
    $ (dbx) info variables #전역변수 값 모두 출력
    $ (dbx) watch <variables> # 변수 값이 바뀌는 시점에서 Break Point 걸림. watch로 걸로 continue로 실행하면 Break Point가 걸리는 시점에 멈춤.
    $ (dbx) display <variables> #변수 값 계속 출력
+   $ (dbx) whatis <variables> #변수타입 출력
 ```
