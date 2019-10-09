@@ -17,6 +17,9 @@ $ docker run -it -p 8822:22 -v /home/pi/git:/home/git/repos --name git rasp_git:
 $ docker commit <CONTAINER NAME> <REPOSITORY:TAG> 
   ex) docker commit setting hadoop2:4 
 $ docker cp <local_path> <container_path> #docker container로 파일 복사
+
+#exec 옵션은 외부에서 container 내부로 명령을 실행할때 사용하는 옵션이나, 아래와 같이 사용하게 되면 docker 내부 container에 접속하여 command하는 것과 같이 실행됨.
+$ docker exec -it git /bin/bash;
 ```
 
 ### docker network 구성
