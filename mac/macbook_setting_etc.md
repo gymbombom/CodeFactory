@@ -71,3 +71,9 @@ $sudo pmset -a standbydelay [초]
 $sudo pmset -a hibernatemode [모드] 
 ```
 
+### 터미널 디렉토리 및 파일 컬러 표시
+```shell
+# /etc/bashrc
+export CLICOLOR=1
+export LSCOLORS=DxFxCxGxBxegedabagaced
+```
