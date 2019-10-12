@@ -22,6 +22,7 @@ chmod 644 ~/.ssh/known_hosts
 
 ```shell
 scp  ~/.ssh/id_rsa.pub user@111.222.333.444:id_rsa.pub /*접속할 서버의 홈디렉토리로 공개키 파일 이동*/
+ssh-copy-id -i ~/.ssh/id_rsa.pub hes@hadoop-master; #ssh 공개키 배포
 ```
 
 ###Server 작업
