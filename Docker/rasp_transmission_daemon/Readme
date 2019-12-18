@@ -1,2 +1,60 @@
---transmission
-docker run -i -t -p 9091:9091  -v /home/pi/test/blue:/home/transmission/share --name tblue tblue:1 /bin/bash
+1. dockerfile Build
+cd dockerfile_path
+sudo docker build --tag rasp_transmission:1 .
+
+
+2. volume setting
+   (연결할 volume의 directory 구조는 아래와 같음)
+
+share/ -
+        conf/      
+              -  AutoDelete.sh
+                 settings.json
+        downloads/
+        seeds/
+
+3. AutoDelete.sh 설정
+ID=""
+PASSWORD=""
+PORT=""
+설정
+
+
+
+4.setting.json 설정
+다운로드할 directory 설정
+"download-dir": "/home/transmission/share/downloads"
+
+web UI username 설정
+"rpc-username": "pi"
+
+web UI password  설정
+"rpc-password": "password"
+
+torrent download 완료되었을때 실행할 shell(나의 경우는 목록 지우는 shell)
+"script-torrent-done-enabled": true,
+"script-torrent-done-filename": "/home/transmission/shell/AutoDelete.sh"
+
+seed 파일 upload 시 자동 다운로드 설정
+"watch-dir-enabled": true
+"watch-dir": "/home/transmission/share/seeds"
+
+
+umask는 0으로 설정해야 다운로드된 파일의 모든 권한이 생김
+"umask": 0,
+
+
+5. docker run 
+
+docker run -it -p 9091:9091  -v /home/pi/share/transmission/share:/home/transmission/share --name transmission rasp_transmission:1 /bin/ash
+
+
+6. transmission-daemon exec
+/usr/bin/transmission-daemon -g /home/transmission/share/conf
+
+
+7. 확인
+/ # ps -ef | grep transmission
+   11 root      0:00 /usr/bin/transmission-daemon -g /home/transmission/share/conf
+   16 root      0:00 grep transmission
+/ #
