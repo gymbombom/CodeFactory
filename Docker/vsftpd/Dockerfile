@@ -1,29 +1,33 @@
-FROM ubuntu:18.04
+FROM alpine:3.10.3
 
-MAINTAINER Andamiro <dlfrb2002@gmail.com>
+MAINTAINER gymbombom <gymbombom@kakao.com>
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
+RUN apk update
+RUN apk upgrade
+RUN apk add vsftpd
 
-RUN apt-get install vsftpd -y
-RUN apt-get install vim -y
-RUN apt-get install net-tools -y
-#RUN apt-get install language-pack-ko -y
-
-# RUN locale-gen ko_KR.UTF-8
-#RUN echo "export LC_CTYPE=\"ko_KR.UTF-8\";" >> /etc/profile
-# RUN source /etc/profile
-
-RUN cp /etc/vsftpd.conf /etc/vsftpd.conf_bk
-
-#RUN echo "pasv_enable=YES" >> /etc/vsftpd.conf
-#RUN echo "pasv_min_port=10091" >> /etc/vsftpd.conf
-#RUN echo "pasv_max_port=10100" >> /etc/vsftpd.conf
-#RUN echo "write_enable=YES" >> /etc/vsftpd.conf
+RUN mkdir -p /home/vsftpd/share
+RUN mkdir -p /home/vsftpd/share_data
+RUN chmod 777 /home/vsftpd
+RUN chmod 777 /home/vsftpd/share
+RUN chmod 777 /home/vsftpd/share_data
 
 
-RUN useradd -ms /bin/bash vsftpd
+VOLUME ["/home/vsftpd/share"]
+VOLUME ["/home/vsftpd/share_data"]
 
-#CMD chmod  -R 777 /home/share/share; service vsftpd restart;
+
+EXPOSE 20
 EXPOSE 21
-EXPOSE 22
+
+EXPOSE 10090
+EXPOSE 10091
+EXPOSE 10092
+EXPOSE 10093
+EXPOSE 10094
+EXPOSE 10095
+EXPOSE 10096
+EXPOSE 10097
+EXPOSE 10098
+EXPOSE 10099
+EXPOSE 10100

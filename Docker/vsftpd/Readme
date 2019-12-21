@@ -1,1 +1,45 @@
-docker run -i -t -p 20:20 -p 21:21 -p 10090:10090 -p 10091:10091 -p 10092:10092 -p 10093:10093 -p 10094:10094 -p 10095:10095 -p 10096:10096 -p 10097:10097 -p 10098:10098 -p 10099:10099 -p 10100:10100 -v /home/pi/share:/home/share/share --name vsftpd rasp_vsftpd:1 /bin/bash
+1. dockerfile Build
+cd dockerfile_path
+sudo docker build --tag rasp_vsftpd:1 .
+
+
+2. volume setting
+   (연결할 volume의 directory 구조는 아래와 같음)
+
+share/ -
+        conf/
+              - vsftpd.conf
+        logs
+
+
+
+3. docker run
+docker run -i -t -p 20:20 -p 21:21 -p 10090:10090 -p 10091:10091 -p 10092:10092 -p 10093:10093 -p 10094:10094 -p 10095:10095 -p 10096:10096 -p 10097:10097 -p 10098:10098 -p 10099:10099 -p 10100:10100 -v /home/pi/share/vsftpd/share:/home/vsftpd/share -v /home/pi/share/transmission/share/downloads:/home/vsftpd/share_data --name vsftpd rasp_vsftpd:1 /bin/ash
+
+
+4.config 파일 owner 변경
+chown root /home/vsftpd/share/conf/vsftpd.conf;
+
+
+4. vsftpd exec
+nohup /usr/sbin/vsftpd  /home/vsftpd/share/conf/vsftpd.conf > /home/vsftpd/share/logs/vsftpd.log &
+
+5. 확인
+ps -ef | grep vsftpd
+
+
+6.root passwd 변경
+passwd root
+
+
+-----------------------------------------------------------------
+
+user 추가 
+adduer [user_name]
+
+
+symblic link 설정
+
+ln -s /home/vsftpd/share_data/downloads /home/lik/downloads;
+
+ln -s [원본] [심볼릭링크]
