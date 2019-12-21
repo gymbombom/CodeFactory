@@ -4,8 +4,11 @@ ID="pi";
 PASSWORD="";
 PORT="9091";
 
-SERVER="$PORT --auth $ID:$PASSWORD"
-TORRENTLIST=`transmission-remote $SERVER --list | sed -e '1d;$d;s/^ *//' | cut --only-delimited --delimiter=" " --fields=1`
+SERVER="-p $PORT -n $ID:$PASSWORD"
+TORRENTLIST=`transmission-remote $SERVER -l | sed -e '1d;$d;s/^ *//' | sed '/Sum/d' | awk '{print $1}'`
+
+#SERVER="$PORT --auth $ID:$PASSWORD"
+#TORRENTLIST=`transmission-remote $SERVER --list | sed -e '1d;$d;s/^ *//' | cut --only-delimited --delimiter=" " --fields=1`
 
 for TORRENTID in $TORRENTLIST
 do
