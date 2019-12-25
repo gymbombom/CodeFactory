@@ -1,12 +1,53 @@
-# build command
-docker build --tag rasp_git:1  .
+1. dockerfile Build
+cd dockerfile_path
+sudo docker build --tag rasp_git:1 .
 
-# run command
-#docker run -it --name git rasp_git:1 /bin/bash
-docker run -it -p 8822:22 -v /home/pi/git:/home/git/repos --name git rasp_git:1 /bin/bash
 
-su git; git init --bare /home/git/repos/test.git
+2. volume setting
+   (연결할 volume의 directory 구조는 아래와 같음)
+   (repos directory 하위에 repository를 위치시킨다.)
+
+share/ -
+        repos/
+
+
+
+3. docker run
+docker run -it -p 8822:22  -v /home/pi/share/git/share:/home/git/share --name git rasp_git:1 /bin/ash
+
+
+4.sshd_config  파일 설정
+PasswordAuthentication yes
+PermitRootLogin yes
+
+ssh 공개키로 로그인되도록 설정
+#PubkeyAuthentication yes
+#AuthorizedKeysFile .ssh/authorized_keys
+
+5. sshd run
+/usr/sbin/sshd
+
+6.확인
+/ # ps -ef | grep sshd
+   13 root      0:00 /usr/sbin/sshd
+   16 root      0:00 grep sshd
+/ #
+
+
+7.repository 생성
+git init --bare /home/git/share/repos/test.git
+
+
+
+
+8. git clone 
+git clone ssh://root@219.ddns.net:8822/home/git/share/repos/test.git
+
+
+8.etc
 
 touch /home/git/.ssh/authorized_keys
 chmod 644 /home/git/.ssh/authorized_keys
 chmod 700 /home/git/.ssh
+
+
