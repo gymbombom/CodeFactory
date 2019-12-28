@@ -1,6 +1,38 @@
-# build command
-docker build --tag svn:1  .
+1. dockerfile Build
+cd dockerfile_path
+sudo docker build --tag rasp_svn:1 .
 
-# run command
-docker run -it -p 3690:3690 -v /home/pi/svn:/home/svn/repos --name svn svn:1 /bin/bash
+
+2. volume setting
+   (연결할 volume의 directory 구조는 아래와 같음)
+   (repos directory 하위에 repository를 위치시킨다.)
+
+share/ -
+        repos/
+
+
+3. docker run
+docker run -it -p 3690:3690 -v /home/pi/share/svn/share:/home/svn/share --name svn rasp_svn:1 /bin/ash
+
+
+4. svn daemon start
+/usr/bin/svnserve -d -r /home/svn/share/repos
+
+
+
+5.svn repository create 
+/usr/bin/svnadmin create --fs-type fsfs /home/svn/share/repos/test;
+
+
+6.config 파일 수정
+# /home/svn/share/repos/test/conf/svnserve.conf
+
+anon-access = read
+auth-access = write
+password-db = passwd
+
+
+7.passwd 수정
+# /home/svn/share/repos/test/conf/passwd
+
 

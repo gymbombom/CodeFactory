@@ -11,7 +11,8 @@ function vsftpd_chk()
 	PID=`docker exec vsftpd ps -ef | grep vsftpd | grep -v grep | awk '{print $1}'`;
 
 	if [ -z $PID ];then
-		docker exec vsftpd nohup /usr/sbin/vsftpd  /home/vsftpd/share/conf/vsftpd.conf > /home/vsftpd/share/logs/vsftpd.log &;
+#		docker exec vsftpd nohup /usr/sbin/vsftpd  /home/vsftpd/share/conf/vsftpd.conf > /home/vsftpd/share/logs/vsftpd.log &;
+		echo "develomenting..."
 	fi
 }
 
@@ -54,15 +55,12 @@ function svn_chk()
 
         if [ -z $STATUS ]; then
                 docker start svn;
-        #       echo "not runnig transmission"
         fi
 
-        PID=`docker exec svn ps -ef | grep svnserve | awk '{print $2}'`;
+        PID=`docker exec svn ps -ef | grep svnserve | grep -v grep | awk '{print $1}'`;
 
         if [ -z $PID ];then
-                #docker exec transmission service transmission-daemon start;
-		docker exec svn svnserve -d -r /home/svn/repos
-        #       echo "not run app";
+			docker exec svn svnserve -d -r /home/svn/share/repos
         fi
 }
 
@@ -72,15 +70,12 @@ function git_chk()
 
         if [ -z $STATUS ]; then
                 docker start git;
-        #       echo "not runnig transmission"
         fi
 
         PID=`docker exec git ps -ef | grep sshd | awk '{print $2}'`;
 
         if [ -z $PID ];then
-                #docker exec transmission service transmission-daemon start;
-		docker exec git /usr/sbin/sshd
-        #       echo "not run app";
+			docker exec git /usr/sbin/sshd
         fi
 }
 
@@ -141,10 +136,10 @@ function snmpd_chk()
 }
 
 
-vsftpd_chk
+#vsftpd_chk
 transmission_chk
 #node_kgs_chk
-#svn_chk
-#git_chk
+svn_chk
+git_chk
 #multi_transmission_chk
 #snmpd_chk

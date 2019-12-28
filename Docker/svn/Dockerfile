@@ -1,17 +1,17 @@
-FROM ubuntu:18.04
+FROM alpine:3.10.3
 
-MAINTAINER Andamiro <dlfrb2002@gmail.com>
+MAINTAINER gymbombom <gymbombom@kakao.com>
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
+RUN apk update
+RUN apk upgrade
 
+RUN apk add subversion
 
-RUN apt-get install vim -y
-RUN apt-get install net-tools -y
-RUN apt-get install language-pack-ko -y
-RUN apt-get install subversion -y
+RUN mkdir -p /home/svn/share
+RUN chmod 777 /home/svn
+RUN chmod 777 /home/svn/share
 
-
-RUN useradd -ms /bin/bash svn
 
 EXPOSE 3690
+
+VOLUME ["/home/svn/share"]
