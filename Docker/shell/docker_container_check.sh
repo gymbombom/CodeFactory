@@ -37,15 +37,12 @@ function node_kgs_chk()
 
         if [ -z $STATUS ]; then
                 docker start node_kgs;
-        #       echo "not runnig transmission"
         fi
 
-        PID=`docker exec node_kgs ps -ef | grep express.js | awk '{print $2}'`;
+        PID=`docker exec node_kgs ps -ef | grep express.js | grep -v grep  | awk '{print $1}'`;
 
         if [ -z $PID ];then
-                #docker exec transmission service transmission-daemon start;
-		docker exec node_kgs nohup /home/node/node_kgs/src/shell/nodestart.sh &
-        #       echo "not run app";
+			docker exec node_kgs /home/node_kgs/src/shell/nodestart.sh
         fi
 }
 
@@ -136,9 +133,9 @@ function snmpd_chk()
 }
 
 
-#vsftpd_chk
+vsftpd_chk
 transmission_chk
-#node_kgs_chk
+node_kgs_chk
 svn_chk
 git_chk
 #multi_transmission_chk
