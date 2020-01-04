@@ -69,7 +69,7 @@ function git_chk()
                 docker start git;
         fi
 
-        PID=`docker exec git ps -ef | grep sshd | awk '{print $2}'`;
+        PID=`docker exec git ps -ef | grep sshd | grep -v grep |  awk '{print $1}'`;
 
         if [ -z $PID ];then
 			docker exec git /usr/sbin/sshd
