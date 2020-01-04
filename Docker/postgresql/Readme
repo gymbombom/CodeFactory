@@ -1,0 +1,63 @@
+1. dockerfile Build
+cd dockerfile_path
+sudo docker build --tag psql:1 .
+
+
+2. volume setting
+   (연결할 volume의 directory 구조는 아래와 같음)
+
+share/ -
+		 data/
+         log/
+
+
+3. docker run
+docker run -it -p 5432:5432  -v /home/pi/share/psql/share:/home/psql/share --name psql psql:1 /bin/ash
+
+
+4. 계정 패스워드 설정 
+passwd root
+passwd psql
+
+
+5.psql 게정으로 전환
+  su psql
+
+6.initdb
+ --initdb <DB_filePath>
+  initdb /home/psql/share/data/test
+
+
+7. postgresql 실행 
+nohup postgres -D /home/psql/share/data/test > /home/psql/share/log/psql.log &
+
+8.확인
+
+~ $ ps -ef
+PID   USER     TIME  COMMAND
+    1 root      0:00 /bin/ash
+   11 psql      0:00 ash
+   24 psql      0:00 postgres -D /home/psql/test
+   26 psql      0:00 postgres: checkpointer
+   27 psql      0:00 postgres: background writer
+   28 psql      0:00 postgres: walwriter
+   29 psql      0:00 postgres: autovacuum launcher
+   30 psql      0:00 postgres: stats collector
+   31 psql      0:00 postgres: logical replication launcher
+   34 psql      0:00 ps -ef
+
+---------------------------------------------------------------------------
+기타 
+
+psql postgres
+
+  user 생성
+ createuser jira --interactive
+
+ CREATE USER confluence WITH ENCRYPTED PASSWORD 'secret123';
+
+
+
+ database 생성
+CREATE DATABASE jiradb OWNER jira ENCODING 'utf-8';
+
