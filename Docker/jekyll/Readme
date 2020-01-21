@@ -1,0 +1,22 @@
+1. dockerfile Build
+cd dockerfile_path
+sudo docker build --tag jekyll:1 .
+
+
+2. volume setting
+   (연결할 volume의 directory 구조는 아래와 같음)
+   (repos directory 하위에 repository를 위치시킨다.)
+
+share/ -
+        repos/
+
+
+
+3. docker run
+docker run -it -p 8888:8000  -v /home/pi/share/jekyll/share:/home/jekyll/share --name jekyll jekyll:1 /bin/bash
+
+
+
+4.bundler install
+bundle install
+
