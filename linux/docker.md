@@ -31,3 +31,17 @@ $ docker run -dit --privileged  --name con1 --network hes-network  --ip 10.0.3.2
 ```shell
 brew cask install docker #맥북은 이렇게 설치
 ```
+
+```shell
+#Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/images/json: dial unix /var/run/docker.sock: connect: permission denied 에러 발생시 
+
+$ sudo usermod -a -G docker $USER
+$ sudo service docker restart
+```
+
+### dockerhub 에 이미지 업로드
+```shell
+$ docker login;
+$ docker push snowdeer/hello-nodejs:v1;
+
+```
