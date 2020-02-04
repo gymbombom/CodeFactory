@@ -17,3 +17,7 @@ RUN apt-get install vim -y
 RUN mkdir -p /home/jekyll/share
 RUN chmod 777 /home/jekyll
 RUN chmod 777 /home/jekyll/share
+
+VOLUME ["/home/jekyll/share"]
+
+EXPOSE 4000
