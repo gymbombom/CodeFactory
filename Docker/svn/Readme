@@ -7,8 +7,8 @@ sudo docker build --tag rasp_svn:1 .
    (연결할 volume의 directory 구조는 아래와 같음)
    (repos directory 하위에 repository를 위치시킨다.)
 
-share/ -
-        repos/
+|-share
+||-repos
 
 
 3. docker run

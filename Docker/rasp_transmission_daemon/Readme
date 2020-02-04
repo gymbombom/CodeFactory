@@ -6,12 +6,13 @@ sudo docker build --tag rasp_transmission:1 .
 2. volume setting
    (연결할 volume의 directory 구조는 아래와 같음)
 
-share/ -
-        conf/      
-              -  AutoDelete.sh
-                 settings.json
-        downloads/
-        seeds/
+|-share
+||-downloads
+||-seeds
+||-conf
+|||-AutoDelete.sh
+|||-settings.json
+
 
 3. AutoDelete.sh 설정
 ID=""

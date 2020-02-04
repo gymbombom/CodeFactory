@@ -6,9 +6,10 @@ sudo docker build --tag psql:1 .
 2. volume setting
    (연결할 volume의 directory 구조는 아래와 같음)
 
-share/ -
-		 data/
-         log/
+|-share
+||-data
+||-log
+
 
 
 3. docker run
