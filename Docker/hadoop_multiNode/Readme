@@ -10,17 +10,15 @@ $ docker network create --subnet 192.168.31.0/24 hadoop-network
 2. docker run
 #docker run -it -p 50070:50070 --name hadoop_single dlfrb2002/hadoop_single:1 /bin/bash
 
-docker run -dit --privileged  --name hadoop1 --network hadoop-network  --ip 192.168.31.1 --add-host=hadoop1:192.168.31.1 --add-host=hadoop2:192.168.31.2 --add-host=hadoop3:192.168.31.3  --add-host=hadoop4:192.168.31.4 --add-host=hadoop5:192.168.31.5 dlfrb2002/hadoop_single:1 /bin/bash; 
+docker run -dit --privileged  --name hadoop1 --network hadoop-network  --ip 192.168.31.2 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_single:1 /bin/bash; 
 
-docker run -dit --privileged  --name hadoop2 --network hadoop-network  --ip 192.168.31.2 --add-host=hadoop1:192.168.31.1 --add-host=hadoop2:192.168.31.2 --add-host=hadoop3:192.168.31.3  --add-host=hadoop4:192.168.31.4 --add-host=hadoop5:192.168.31.5 dlfrb2002/hadoop_single:1 /bin/bash; 
+docker run -dit --privileged  --name hadoop2 --network hadoop-network  --ip 192.168.31.3 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_single:1 /bin/bash; 
 
-docker run -dit --privileged  --name hadoop3 --network hadoop-network  --ip 192.168.31.3 --add-host=hadoop1:192.168.31.1 --add-host=hadoop2:192.168.31.2 --add-host=hadoop3:192.168.31.3  --add-host=hadoop4:192.168.31.4 --add-host=hadoop5:192.168.31.5 dlfrb2002/hadoop_single:1 /bin/bash; 
+docker run -dit --privileged  --name hadoop3 --network hadoop-network  --ip 192.168.31.4 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_single:1 /bin/bash; 
 
-docker run -dit --privileged  --name hadoop4 --network hadoop-network  --ip 192.168.31.4 --add-host=hadoop1:192.168.31.1 --add-host=hadoop2:192.168.31.2 --add-host=hadoop3:192.168.31.3  --add-host=hadoop4:192.168.31.4 --add-host=hadoop5:192.168.31.5 dlfrb2002/hadoop_single:1 /bin/bash; 
+docker run -dit --privileged  --name hadoop4 --network hadoop-network  --ip 192.168.31.5 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_single:1 /bin/bash; 
 
-
-docker run -dit --privileged  --name hadoop5 --network hadoop-network  --ip 192.168.31.5 --add-host=hadoop1:192.168.31.1 --add-host=hadoop2:192.168.31.2 --add-host=hadoop3:192.168.31.3  --add-host=hadoop4:192.168.31.4 --add-host=hadoop5:192.168.31.5 dlfrb2002/hadoop_single:1 /bin/bash; 
-
+docker run -dit --privileged  --name hadoop5 --network hadoop-network  --ip 192.168.31.6 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_single:1 /bin/bash; 
 
 
 passwd root
@@ -34,18 +32,24 @@ $ ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
 
 --ssh 공개키 설정
 $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa;
-
+$ chmod 0600 ~/.ssh/authorized_keys; 
 
 -- ssh daemon 기동 
 /usr/sbin/sshd
 
---  localhost 에 ssh 공개키 배포
-$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys; 
-$ chmod 0600 ~/.ssh/authorized_keys; 
+--  namenode  ssh_key 공개키 배포
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub root@hadoop1;
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub root@hadoop2;
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub root@hadoop3;
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub root@hadoop4;
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub root@hadoop5;
 
 
 -- local ssh 접속확인
-ssh localhost
+ssh root@hadoop3
+
+
+
 
 
 -- namenode포멧
