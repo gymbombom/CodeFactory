@@ -1,24 +1,32 @@
-1. dockerfile pull 
-docker pull dlfrb2002/hadoop_single:1;
+1. dockerfile pull
+docker pull dlfrb2002/hadoop_multi:1;
 
+2. swap memory 설정
+sudo dd if=/dev/zero of=/var/swapfile bs=1024 count=8000000
+sudo mkswap /var/swapfile
+sudo chmod 0600 /var/swapfile
+sudo swapon /var/swapfile
 
-2.docker network 생성
+# 재부팅시에도 swapfile 생성
+echo "swapon /var/swapfile" >> /etc/rc.local
+
+3.docker network 생성
 $ docker network create --subnet 192.168.31.0/24 hadoop-network
 
 
 
-2. docker run
-#docker run -it -p 50070:50070 --name hadoop_single dlfrb2002/hadoop_single:1 /bin/bash
+4. docker run
+#docker run -it -p 50070:50070 --name hadoop_multi dlfrb2002/hadoop_multi:1 /bin/bash
 
-docker run -dit --privileged  --name hadoop1 --network hadoop-network  --ip 192.168.31.2 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_single:1 /bin/bash; 
+docker run -dit --privileged -p 50070:50070 --name hadoop1 --network hadoop-network  --ip 192.168.31.2 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_multi:1 /bin/bash;
 
-docker run -dit --privileged  --name hadoop2 --network hadoop-network  --ip 192.168.31.3 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_single:1 /bin/bash; 
+docker run -dit --privileged  --name hadoop2 --network hadoop-network  --ip 192.168.31.3 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_multi:1 /bin/bash;
 
-docker run -dit --privileged  --name hadoop3 --network hadoop-network  --ip 192.168.31.4 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_single:1 /bin/bash; 
+docker run -dit --privileged  --name hadoop3 --network hadoop-network  --ip 192.168.31.4 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_multi:1 /bin/bash;
 
-docker run -dit --privileged  --name hadoop4 --network hadoop-network  --ip 192.168.31.5 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_single:1 /bin/bash; 
+docker run -dit --privileged  --name hadoop4 --network hadoop-network  --ip 192.168.31.5 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_multi:1 /bin/bash;
 
-docker run -dit --privileged  --name hadoop5 --network hadoop-network  --ip 192.168.31.6 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_single:1 /bin/bash; 
+docker run -dit --privileged  --name hadoop5 --network hadoop-network  --ip 192.168.31.6 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_multi:1 /bin/bash;
 
 
 passwd root
@@ -32,9 +40,10 @@ $ ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
 
 --ssh 공개키 설정
 $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa;
-$ chmod 0600 ~/.ssh/authorized_keys; 
+$ touch ~/.ssh/authorized_keys;
+$ chmod 0600 ~/.ssh/authorized_keys;
 
--- ssh daemon 기동 
+-- ssh daemon 기동
 /usr/sbin/sshd
 
 --  namenode  ssh_key 공개키 배포
@@ -55,6 +64,16 @@ ssh root@hadoop3
 -- namenode포멧
 /home/hes/hadoop-2.7.3/bin/hdfs namenode -format;
 
---hadoop 실행 
+--hadoop 실행
 /home/hes/hadoop-2.7.3/sbin/start-dfs.sh
 
+
+
+
+-- HA 세팅전
+
+로그삭제
+공개키 삭제
+/etc/sshd 아래 공개키 삭제
+/etc/hosts 내용 삭제
+/hadoop datafile 삭제
