@@ -1,5 +1,5 @@
 1. dockerfile pull
-docker pull dlfrb2002/hadoop_ha:1;
+docker pull dlfrb2002/hadoop_ha:2;
 
 2. swap memory 설정
 sudo dd if=/dev/zero of=/var/swapfile bs=1024 count=8000000
@@ -16,18 +16,17 @@ $ docker network create --subnet 192.168.31.0/24 hadoop-network
 
 
 4. docker run
-#docker run -it  --name  dlfrb2002/hadoop_ha:1 /bin/bash
+#docker run -it  --name  dlfrb2002/hadoop_ha:2 /bin/bash
 
-docker run -dit --privileged -p 50070:50070 --name hadoop1 --network hadoop-network  --ip 192.168.31.2 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_ha:1 /bin/bash;
+docker run -dit --privileged -p 50070:50070 --name hadoop1 --network hadoop-network  --ip 192.168.31.2 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_ha:2 /bin/bash;
 
-docker run -dit --privileged  --name hadoop2 --network hadoop-network  --ip 192.168.31.3 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_ha:1 /bin/bash;
+docker run -dit --privileged  --name hadoop2 --network hadoop-network  --ip 192.168.31.3 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_ha:2 /bin/bash;
 
-docker run -dit --privileged  --name hadoop3 --network hadoop-network  --ip 192.168.31.4 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_ha:1 /bin/bash;
+docker run -dit --privileged  --name hadoop3 --network hadoop-network  --ip 192.168.31.4 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_ha:2 /bin/bash;
 
-docker run -dit --privileged  --name hadoop4 --network hadoop-network  --ip 192.168.31.5 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_ha:1 /bin/bash;
+docker run -dit --privileged  --name hadoop4 --network hadoop-network  --ip 192.168.31.5 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_ha:2 /bin/bash;
 
-docker run -dit --privileged  --name hadoop5 --network hadoop-network  --ip 192.168.31.6 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_ha:1 /bin/bash;
-
+docker run -dit --privileged  --name hadoop5 --network hadoop-network  --ip 192.168.31.6 --add-host=hadoop1:192.168.31.2 --add-host=hadoop2:192.168.31.3 --add-host=hadoop3:192.168.31.4  --add-host=hadoop4:192.168.31.5 --add-host=hadoop5:192.168.31.6 dlfrb2002/hadoop_ha:2 /bin/bash;
 
 passwd root
 
@@ -80,7 +79,6 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub root@hadoop1; ssh-copy-id -i ~/.ssh/id_rsa.pub 
 
 -- active /standby namenode 에서  ssh 접속확인
 ssh root@hadoop3
-
 
 --zookeeper myid 파일 변경(각 서버별로..)
 
