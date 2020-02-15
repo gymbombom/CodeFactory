@@ -1,0 +1,70 @@
+--wget 설치
+sudo yum install wget -y;
+
+--docker 설치
+sudo wget -qO- https://get.docker.com/ | sh
+
+--permition 설정
+sudo usermod -a -G docker hes
+sudo service docker restart
+
+--docker pull
+docker pull dlfrb2002/kafka:1
+
+
+-- docker network 생성
+$ docker network create --subnet 192.168.31.0/24 kafka-network
+
+
+
+-docker container 생성
+
+docker run -dit --privileged --name kafka1 --network kafka-network  --ip 192.168.31.2 --add-host=kafka1:192.168.31.2 --add-host=kafka2:192.168.31.3 --add-host=kafka3:192.168.31.4  --add-host=kafka4:192.168.31.5 --add-host=kafka5:192.168.31.6 dlfrb2002/kafka:1 /bin/bash;
+
+
+docker run -dit --privileged --name kafka2 --network kafka-network  --ip 192.168.31.3 --add-host=kafka1:192.168.31.2 --add-host=kafka2:192.168.31.3 --add-host=kafka3:192.168.31.4  --add-host=kafka4:192.168.31.5 --add-host=kafka5:192.168.31.6 dlfrb2002/kafka:1 /bin/bash;
+
+
+docker run -dit --privileged --name kafka3 --network kafka-network  --ip 192.168.31.4 --add-host=kafka1:192.168.31.2 --add-host=kafka2:192.168.31.3 --add-host=kafka3:192.168.31.4  --add-host=kafka4:192.168.31.5 --add-host=kafka5:192.168.31.6 dlfrb2002/kafka:1 /bin/bash;
+
+
+docker run -dit --privileged --name kafka4 --network kafka-network  --ip 192.168.31.5 --add-host=kafka1:192.168.31.2 --add-host=kafka2:192.168.31.3 --add-host=kafka3:192.168.31.4  --add-host=kafka4:192.168.31.5 --add-host=kafka5:192.168.31.6 dlfrb2002/kafka:1 /bin/bash;
+
+
+docker run -dit --privileged --name kafka5 --network kafka-network  --ip 192.168.31.6 --add-host=kafka1:192.168.31.2 --add-host=kafka2:192.168.31.3 --add-host=kafka3:192.168.31.4  --add-host=kafka4:192.168.31.5 --add-host=kafka5:192.168.31.6 dlfrb2002/kafka:1 /bin/bash;
+
+
+
+
+--zookeeper myid세팅
+echo 1 > /home/kafka/data/kafka/zookeeper/myid;
+echo 2 > /home/kafka/data/kafka/zookeeper/myid;
+echo 3 > /home/kafka/data/kafka/zookeeper/myid;
+echo 4 > /home/kafka/data/kafka/zookeeper/myid;
+echo 5 > /home/kafka/data/kafka/zookeeper/myid;
+
+
+-- servier.properties  변경
+broker.id
+
+
+--zookeeper start
+/home/kafka/kafka_2.11-0.10.1.1/bin/zookeeper-server-start.sh  -daemon /home/kafka/kafka_2.11-0.10.1.1/config/zookeeper.properties
+
+
+-- kafka start
+/home/kafka/kafka_2.11-0.10.1.1/bin/kafka-server-start.sh -daemon /home/kafka/kafka_2.11-0.10.1.1/config/server.properties
+
+-- topic 생성
+/home/kafka/kafka_2.11-0.10.1.1/bin/kafka-topics.sh --create --zookeeper kafka1:2181 kafka2:2181 kafka3:2181 kafka4:2181 kafka5:2181  --replication-factor 3 --partitions 50 --topic test
+
+
+-- topic list 
+/home/kafka/kafka_2.11-0.10.1.1/bin/kafka-topics.sh --list --zookeeper kafka1:2181 kafka2:2181 kafka3:2181 kafka4:2181 kafka5:2181 
+
+
+-- producer 
+ /home/kafka/kafka_2.11-0.10.1.1/bin/kafka-console-producer.sh --broker-list kafka1:9092 kafka2:9092 kafka3:9092 kafka4:9092 kafka5:9092 --topic test
+
+ --consumer 
+ /home/kafka/kafka_2.11-0.10.1.1/bin/kafka-console-consumer.sh --from-beginning --new-consumer --bootstrap-server kafka1:9092 kafka2:9092 kafka3:9092 kafka4:9092 kafka5:9092 --topic test
