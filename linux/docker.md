@@ -8,6 +8,10 @@ sudo wget -qO- https://get.docker.com/ | sh
 # hello-world 이미지가 필요없다면 삭제해야함.
 #$ sudo docker rm `sudo docker ps -aq`
 #$ sudo docker rmi hello-world 
+
+#dial unix /var/run/docker.sock: connect: permission denied 해결방법
+$ sudo usermod -a -G docker $USER
+$ sudo service docker restart
 ```
 ### 사용법
 ```shell
