@@ -11,8 +11,7 @@ function vsftpd_chk()
 	PID=`docker exec vsftpd ps -ef | grep vsftpd | grep -v grep | awk '{print $1}'`;
 
 	if [ -z $PID ];then
-#		docker exec vsftpd nohup /usr/sbin/vsftpd  /home/vsftpd/share/conf/vsftpd.conf > /home/vsftpd/share/logs/vsftpd.log &;
-		echo "develomenting..."
+		docker exec -ti vsftpd /bin/ash -c 'nohup /usr/sbin/vsftpd  /home/vsftpd/share/conf/vsftpd.conf >> /home/vsftpd/share/logs/vsftpd.log &> output & sleep 1';
 	fi
 }
 
@@ -42,7 +41,7 @@ function node_kgs_chk()
         PID=`docker exec node_kgs ps -ef | grep express.js | grep -v grep  | awk '{print $1}'`;
 
         if [ -z $PID ];then
-			docker exec node_kgs /home/node_kgs/src/shell/nodestart.sh
+			docker exec node_kgs /home/node_kgs/share/src/shell/nodestart.sh
         fi
 }
 
@@ -135,8 +134,8 @@ function snmpd_chk()
 
 vsftpd_chk
 transmission_chk
-node_kgs_chk
-svn_chk
-git_chk
+#node_kgs_chk
+#svn_chk
+#git_chk
 #multi_transmission_chk
 #snmpd_chk
